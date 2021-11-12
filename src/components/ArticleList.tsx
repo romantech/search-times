@@ -9,16 +9,9 @@ interface ArticleListProps {
 const ArticleList = function ({ articles }: ArticleListProps): JSX.Element {
   return (
     <ArticleListContainer>
-      {articles.map(article => {
-        const domain = 'https://nytimes.com/';
-        const hasImage = article.multimedia[0] !== undefined;
-        const imageUrl = hasImage
-          ? `${domain}${article.multimedia[0]?.url}`
-          : 'https://i.ibb.co/0yYnWSn/default-fallback-image.png';
-        return (
-          <Article key={article._id} article={article} imageUrl={imageUrl} />
-        );
-      })}
+      {articles.map(article => (
+        <Article key={article._id} article={article} />
+      ))}
     </ArticleListContainer>
   );
 };

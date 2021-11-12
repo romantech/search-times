@@ -6,13 +6,11 @@ import { sliceCharactersUntilNum } from '../utils';
 
 interface ArticleListProps {
   article: Article;
-  imageUrl: string;
 }
 
-const Article = function ({
-  article,
-  imageUrl,
-}: ArticleListProps): JSX.Element {
+const Article = function ({ article }: ArticleListProps): JSX.Element {
+  const domain = 'https://nytimes.com/';
+  const imageUrl = `${domain}${article.multimedia[0]?.url}`;
   const Image = useImage(imageUrl);
 
   return (

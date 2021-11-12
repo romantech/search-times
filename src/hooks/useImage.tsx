@@ -17,6 +17,10 @@ const useImage = function (
           isLoading={isLoading}
           src={src}
           alt="article_image"
+          onError={({ currentTarget }) => {
+            currentTarget.src =
+              'https://i.ibb.co/0yYnWSn/default-fallback-image.png';
+          }}
           onLoad={() => setIsLoading(false)}
         />
       </>
