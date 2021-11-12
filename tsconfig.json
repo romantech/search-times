@@ -16,8 +16,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "downlevelIteration": true,
-    "typeRoots": ["./node_modules/@types", "./src/types"],
-    "baseUrl": "."
+    "typeRoots": ["./node_modules/@types", "./src/types"]
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules", "dist"]
