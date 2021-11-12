@@ -14,7 +14,7 @@ const SearchBar = function ({
   const [debouncedTerm, setDebouncedTerm] = useState(term);
 
   useEffect(() => {
-    const timer = setTimeout(() => setTerm(debouncedTerm), 1000);
+    const timer = setTimeout(() => setTerm(debouncedTerm), 500);
     return () => clearTimeout(timer);
   }, [debouncedTerm]);
 
