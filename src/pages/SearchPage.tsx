@@ -1,23 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { Spin, Empty } from 'antd';
 import ArticleList from '../components/ArticleList';
 import SearchBar from '../components/SearchBar';
-import API from '../api';
+import useFetch from '../hooks/useFetch';
 
 const SearchPage = function (): JSX.Element {
   const [articles, setArticles] = useState<Article[]>([]);
   const [noResults, setNoResults] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [request, fetchedData, loading, error] = useFetch({
+    method: 'get',
+    url: '',
+  });
 
-  const onSearchSubmit = async (term: string) => {
-    setLoading(true);
-    const { data } = await API.searchArticles(term.toLowerCase());
-    setNoResults(data.response.docs.length === 0);
-    setArticles(data.response.docs);
-    setLoading(false);
+  useEffect(() => {
+    if (fetchedData) {
+      setNoResults(fetchedData.response.docs.length === 0);
+      setArticles(fetchedData.response.docs);
+    }
+  }, [fetchedData]);
+
+  const onSearchSubmit = (term: string) => {
+    request(`/articlesearch.json?q=${term}`);
   };
-
   const clearResults = () => setArticles([]);
 
   return (
@@ -31,15 +36,22 @@ const SearchPage = function (): JSX.Element {
           />
         </div>
       </section>
-      <section>
+      <ResultArea>
         {loading ? (
           <Spin size="large" />
-        ) : noResults ? (
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+        ) : noResults || error ? (
+          <Empty
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+            description={
+              error
+                ? 'Too many request, Please try later'
+                : 'No Articles, Try other keywords'
+            }
+          />
         ) : (
           <ArticleList articles={articles} />
         )}
-      </section>
+      </ResultArea>
     </Container>
   );
 };
@@ -52,5 +64,7 @@ const Container = styled.section`
   justify-content: center;
   gap: 1rem;
 `;
+
+const ResultArea = styled.section``;
 
 export default SearchPage;

@@ -1,4 +1,4 @@
-import axios, { AxiosPromise } from 'axios';
+import axios, { AxiosPromise, CancelTokenSource } from 'axios';
 
 axios.defaults.baseURL = 'https://api.nytimes.com/svc/search/v2';
 axios.defaults.params = {
@@ -6,7 +6,9 @@ axios.defaults.params = {
 };
 
 export default {
-  searchArticles: (query: string): AxiosPromise => {
-    return axios.get(`/articlesearch.json?q=${query}`);
+  searchArticles: (query: string, source?: CancelTokenSource): AxiosPromise => {
+    return axios.get(`/articlesearch.json?q=${query}`, {
+      cancelToken: source?.token,
+    });
   },
 };

@@ -10,7 +10,11 @@ interface ArticleListProps {
 
 const Article = function ({ article }: ArticleListProps): JSX.Element {
   const domain = 'https://nytimes.com/';
-  const imageUrl = `${domain}${article.multimedia[0]?.url}`;
+  const hasImage = article.multimedia[0] !== undefined;
+  const imageUrl = hasImage
+    ? `${domain}${article.multimedia[0].url}`
+    : 'https://i.ibb.co/0yYnWSn/default-fallback-image.png';
+
   const Image = useImage(imageUrl);
 
   return (
@@ -56,7 +60,9 @@ const TextWrapper = styled.section`
 `;
 
 const ImageWrapper = styled.section`
-  min-width: 100px;
+  min-width: 6.2rem;
+  max-height: 5rem;
+  overflow: hidden;
   width: 20%;
   display: flex;
   align-items: center;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 
 interface SearchBarProps {
-  onSearchSubmit: (term: string) => Promise<void>;
+  onSearchSubmit: (term: string) => void;
   clearResults: () => void;
 }
 
@@ -32,6 +32,7 @@ const SearchBar = function ({
       onChange={({ target }) => setDebouncedTerm(target.value)}
       type="text"
       value={debouncedTerm}
+      placeholder="Input keywords"
       maxLength={100}
     />
   );
