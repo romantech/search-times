@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 import { RootState } from '../modules';
+import { getImage } from '../utils';
 import Article from './Article';
 
 interface ArticleListProps {
@@ -14,13 +15,9 @@ const ArticleList = function ({ articles }: ArticleListProps): JSX.Element {
   return (
     <ArticleListContainer>
       {articles?.map(article => {
-        const domain = 'https://nytimes.com/';
-        const hasImage = article.multimedia[0] !== undefined;
-        const imageUrl = hasImage
-          ? `${domain}${article.multimedia[0].url}`
-          : 'https://i.ibb.co/0yYnWSn/default-fallback-image.png';
-
+        const imageUrl = getImage(article.multimedia[0]?.url);
         const isFavorite = favorites.some(({ _id }) => _id === article._id);
+
         return (
           <Article
             key={article._id}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
+import { checkTerms } from '../utils';
 
 interface SearchBarProps {
   term: string;
@@ -9,10 +10,14 @@ interface SearchBarProps {
 const SearchBar = function ({ term, setTerm }: SearchBarProps): JSX.Element {
   const [debouncedTerm, setDebouncedTerm] = useState(term);
 
+  // eslint-disable-next-line consistent-return
   useEffect(() => {
-    const timer = setTimeout(() => setTerm(debouncedTerm), 500);
-    return () => clearTimeout(timer);
-  }, [debouncedTerm, setTerm]);
+    const isChanged = checkTerms(term, debouncedTerm);
+    if (isChanged) {
+      const timer = setTimeout(() => setTerm(debouncedTerm), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [debouncedTerm, setTerm, term]);
 
   return (
     <Input

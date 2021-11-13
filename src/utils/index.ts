@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 export const sliceCharactersUntilNum = (
   string: string,
   num: number,
@@ -11,4 +10,25 @@ export const sliceCharactersUntilNum = (
     }
     return acc;
   }, '');
+};
+
+export const checkTerms = (prevTerm: string, curTerm: string): boolean => {
+  let result = true;
+  const trimmedPrevTerm = prevTerm.trim();
+  const trimmedCurTerm = curTerm.trim();
+  if (trimmedPrevTerm === trimmedCurTerm) {
+    result = false;
+  }
+  return result;
+};
+
+export const getImage = (
+  imgUrl = 'fallback',
+  domain = 'https://nytimes.com/',
+): string => {
+  const hasImage = imgUrl !== undefined && imgUrl !== 'fallback';
+  const imageUrl = hasImage
+    ? `${domain}${imgUrl}`
+    : 'https://i.ibb.co/0yYnWSn/default-fallback-image.png';
+  return imageUrl;
 };

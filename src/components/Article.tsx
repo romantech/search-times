@@ -44,8 +44,8 @@ const Article = function ({
           </a>
         </p>
         <TagWrapper>
-          <TagSpan>{new Date(article.pub_date).toLocaleDateString()}</TagSpan>
-          <TagSpan>{article.section_name}</TagSpan>
+          <TagSpan>{article.pub_date?.split('T')[0]}</TagSpan>
+          <TagSpan>{article.section_name?.split(' ')[0]}</TagSpan>
           <Tooltip title="Add to favorite">
             <Button
               type="default"
@@ -70,11 +70,12 @@ const ArticleContainer = styled.section`
   justify-content: center;
   border-bottom: 1px solid lightgray;
   padding: 1rem 0rem;
-  gap: 2rem;
+  gap: 1.5rem;
 `;
 
 const TagWrapper = styled.section`
   display: flex;
+  align-items: center;
   gap: 0.5rem;
   font-size: 0.7rem;
 `;

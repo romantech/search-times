@@ -25,6 +25,7 @@ const SearchPage = function (): JSX.Element {
   useEffect(() => {
     if (term === '') {
       setRenderData([]);
+      setNoResults(false);
     }
   }, [term]);
 

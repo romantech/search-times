@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Spin } from 'antd';
 import styled from 'styled-components/macro';
+import { getImage } from '../utils';
 
 type SpinSize = 'default' | 'small' | 'large';
 
@@ -18,8 +19,7 @@ const useImage = function (
           src={src}
           alt="article_image"
           onError={({ currentTarget }) => {
-            currentTarget.src =
-              'https://i.ibb.co/0yYnWSn/default-fallback-image.png';
+            currentTarget.src = getImage();
           }}
           onLoad={() => setIsLoading(false)}
         />
