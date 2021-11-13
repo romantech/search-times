@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components/macro';
+import { Input } from 'antd';
 import { checkTerms } from '../utils';
 
 interface SearchBarProps {
@@ -7,35 +7,35 @@ interface SearchBarProps {
   setTerm: React.Dispatch<React.SetStateAction<string>>;
 }
 
+const { Search } = Input;
+
 const SearchBar = function ({ term, setTerm }: SearchBarProps): JSX.Element {
   const [debouncedTerm, setDebouncedTerm] = useState(term);
+  const [typing, setTyping] = useState(false);
 
   // eslint-disable-next-line consistent-return
   useEffect(() => {
+    setTyping(true);
     const isChanged = checkTerms(term, debouncedTerm);
     if (isChanged) {
       const timer = setTimeout(() => setTerm(debouncedTerm), 500);
       return () => clearTimeout(timer);
     }
+    setTyping(false);
   }, [debouncedTerm, setTerm, term]);
 
   return (
-    <Input
+    <Search
       onChange={({ target }) => setDebouncedTerm(target.value)}
       type="text"
       value={debouncedTerm}
+      loading={typing}
       placeholder="Input keywords"
       maxLength={100}
+      size="large"
+      style={{ width: '85vw', maxWidth: '38rem' }}
     />
   );
 };
-
-const Input = styled.input`
-  width: 85vw;
-  height: 20vh;
-  max-height: 3.5rem;
-  max-width: 38rem;
-  padding: 1rem;
-`;
 
 export default SearchBar;

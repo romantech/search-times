@@ -44,9 +44,9 @@ const Article = function ({
           </a>
         </p>
         <TagWrapper>
-          <TagSpan>{article.pub_date?.split('T')[0]}</TagSpan>
-          <TagSpan>{article.section_name?.split(' ')[0]}</TagSpan>
-          <Tooltip title="Add to favorite">
+          <Tooltip
+            title={isFavorite ? 'Remove from favorite' : 'Add to favorite'}
+          >
             <Button
               type="default"
               shape="circle"
@@ -54,6 +54,8 @@ const Article = function ({
               onClick={favoriteHandler}
             />
           </Tooltip>
+          <TagSpan>{article.pub_date?.split('T')[0]}</TagSpan>
+          <TagSpan>{article.section_name?.split(' ')[0]}</TagSpan>
         </TagWrapper>
       </TextWrapper>
       <ImageWrapper>

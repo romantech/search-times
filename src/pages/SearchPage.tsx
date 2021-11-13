@@ -37,7 +37,7 @@ const SearchPage = function (): JSX.Element {
           <SearchBar term={term} setTerm={setTerm} />
         </div>
       </section>
-      <ResultArea>
+      <section>
         {loading ? (
           <Spin size="large" style={{ marginTop: '5vh' }} />
         ) : noResults || error ? (
@@ -52,7 +52,7 @@ const SearchPage = function (): JSX.Element {
         ) : (
           <ArticleList articles={renderData} />
         )}
-      </ResultArea>
+      </section>
     </Container>
   );
 };
@@ -64,8 +64,11 @@ const Container = styled.section`
   align-items: center;
   justify-content: center;
   gap: 1rem;
-`;
 
-const ResultArea = styled.section``;
+  h1 {
+    text-align: center;
+    font-weight: bold;
+  }
+`;
 
 export default SearchPage;

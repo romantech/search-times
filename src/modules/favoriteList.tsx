@@ -34,12 +34,12 @@ export default function reducer(
     case ADD_FAVORITES:
       return {
         ...state,
-        favorites: [...state.favorites, action.payload],
+        favorites: [action.payload, ...state.favorites],
       };
     case REMOVE_FAVORITES:
       return {
         ...state,
-        favorites: [...state.favorites.filter(el => el._id !== action.payload)],
+        favorites: state.favorites.filter(el => el._id !== action.payload),
       };
     default:
       return state;
