@@ -6,34 +6,34 @@ import SearchBar from '../components/SearchBar';
 import useFetch from '../hooks/useFetch';
 
 const SearchPage = function (): JSX.Element {
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [term, setTerm] = useState('');
   const [noResults, setNoResults] = useState(false);
-  const [request, fetchedData, loading, error] = useFetch({
+  const [renderData, setRenderData] = useState<Article[]>([]);
+  const [fetchedData, loading, error] = useFetch({
     method: 'get',
-    url: '',
+    path: '/articlesearch.json',
+    query: term,
   });
 
   useEffect(() => {
     if (fetchedData) {
       setNoResults(fetchedData.response.docs.length === 0);
-      setArticles(fetchedData.response.docs);
+      setRenderData(fetchedData.response.docs);
     }
   }, [fetchedData]);
 
-  const onSearchSubmit = (term: string) => {
-    request(`/articlesearch.json?q=${term}`);
-  };
-  const clearResults = () => setArticles([]);
+  useEffect(() => {
+    if (term === '') {
+      setRenderData([]);
+    }
+  }, [term]);
 
   return (
     <Container>
       <section>
-        <h1>SEARCH NY-TIMES</h1>
+        <h1>SEARCH TIMES</h1>
         <div>
-          <SearchBar
-            onSearchSubmit={onSearchSubmit}
-            clearResults={clearResults}
-          />
+          <SearchBar term={term} setTerm={setTerm} />
         </div>
       </section>
       <ResultArea>
@@ -49,7 +49,7 @@ const SearchPage = function (): JSX.Element {
             }
           />
         ) : (
-          <ArticleList articles={articles} />
+          <ArticleList articles={renderData} />
         )}
       </ResultArea>
     </Container>

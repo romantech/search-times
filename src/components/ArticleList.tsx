@@ -9,7 +9,7 @@ interface ArticleListProps {
 const ArticleList = function ({ articles }: ArticleListProps): JSX.Element {
   return (
     <ArticleListContainer>
-      {articles.map(article => (
+      {articles?.map(article => (
         <Article key={article._id} article={article} />
       ))}
     </ArticleListContainer>

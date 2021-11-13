@@ -3,7 +3,8 @@ import axios from 'axios';
 
 interface ParamsType {
   method: 'get' | 'post';
-  url?: string;
+  path: string;
+  query: string;
   payload?: Record<string, unknown>;
 }
 
@@ -13,8 +14,7 @@ axios.defaults.params = {
 };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const useFetch = ({ method, url, payload }: ParamsType) => {
-  const [requestUrl, setRequestUrl] = useState(url);
+const useFetch = ({ method, path, query, payload }: ParamsType) => {
   const [loading, setLoading] = useState(false);
   const [fetchedData, setFetchedData] = useState<ArticleSearch | null>(null);
   const [error, setError] = useState<Error | null>(null);
@@ -22,11 +22,11 @@ const useFetch = ({ method, url, payload }: ParamsType) => {
   useEffect(() => {
     const source = axios.CancelToken.source();
 
-    if (requestUrl !== '') {
+    if (query !== '') {
       setLoading(true);
       axios({
         method,
-        url: requestUrl,
+        url: `${path}?q=${query}`,
         data: method === 'post' ? payload : null,
         cancelToken: source.token,
       })
@@ -35,7 +35,6 @@ const useFetch = ({ method, url, payload }: ParamsType) => {
           setError(null);
         })
         .catch((err: Error) => {
-          if (axios.isCancel(err)) return;
           setError(err);
         })
         .finally(() => {
@@ -46,9 +45,9 @@ const useFetch = ({ method, url, payload }: ParamsType) => {
     return () => {
       source.cancel();
     };
-  }, [method, payload, requestUrl]);
+  }, [method, path, payload, query]);
 
-  return [setRequestUrl, fetchedData, loading, error] as const;
+  return [fetchedData, loading, error] as const;
 };
 
 export default useFetch;

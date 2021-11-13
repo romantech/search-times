@@ -2,30 +2,17 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 
 interface SearchBarProps {
-  onSearchSubmit: (term: string) => void;
-  clearResults: () => void;
+  term: string;
+  setTerm: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SearchBar = function ({
-  onSearchSubmit,
-  clearResults,
-}: SearchBarProps): JSX.Element {
-  const [term, setTerm] = useState('');
+const SearchBar = function ({ term, setTerm }: SearchBarProps): JSX.Element {
   const [debouncedTerm, setDebouncedTerm] = useState(term);
 
   useEffect(() => {
     const timer = setTimeout(() => setTerm(debouncedTerm), 500);
     return () => clearTimeout(timer);
-  }, [debouncedTerm]);
-
-  useEffect(() => {
-    if (term !== '') {
-      onSearchSubmit(term);
-    } else {
-      clearResults();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [term]);
+  }, [debouncedTerm, setTerm]);
 
   return (
     <Input
