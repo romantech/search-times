@@ -5,11 +5,11 @@ import axios from 'axios';
 interface ParamsType {
   method: 'get' | 'post';
   path: string;
-  query: string;
+  query?: string;
   payload?: Record<string, unknown>;
 }
 
-axios.defaults.baseURL = 'https://api.nytimes.com/svc/search/v2';
+axios.defaults.baseURL = 'https://api.nytimes.com/svc';
 axios.defaults.params = {
   'api-key': process.env.REACT_APP_API_KEY,
 };
@@ -27,7 +27,7 @@ const useFetch = ({ method, path, query, payload }: ParamsType) => {
       setLoading(true);
       axios({
         method,
-        url: `${path}?q=${query}`,
+        url: query ? `${path}?q=${query}` : path,
         data: method === 'post' ? payload : null,
         cancelToken: source.token, // 취소 토큰 할당
       })

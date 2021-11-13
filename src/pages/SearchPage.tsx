@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 import { Spin, Empty } from 'antd';
 import ArticleList from '../components/ArticleList';
 import SearchBar from '../components/SearchBar';
@@ -11,7 +11,7 @@ const SearchPage = function (): JSX.Element {
   const [renderData, setRenderData] = useState<Article[]>([]);
   const [fetchedData, loading, error] = useFetch({
     method: 'get',
-    path: '/articlesearch.json',
+    path: 'search/v2/articlesearch.json',
     query: term,
   });
 
@@ -30,7 +30,7 @@ const SearchPage = function (): JSX.Element {
   }, [term]);
 
   return (
-    <Container>
+    <Container isCenter={renderData.length === 0}>
       <section>
         <h1>SEARCH TIMES</h1>
         <div>
@@ -57,7 +57,7 @@ const SearchPage = function (): JSX.Element {
   );
 };
 
-const Container = styled.section`
+const Container = styled.section<{ isCenter: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -66,9 +66,25 @@ const Container = styled.section`
   gap: 1rem;
 
   h1 {
+    letter-spacing: 0.7rem;
+    font-size: 2.5rem;
     text-align: center;
     font-weight: bold;
   }
+
+  section:nth-child(1) {
+    margin-top: 0;
+    transition: margin 0.3s ease-in-out;
+  }
+
+  ${({ isCenter }) =>
+    isCenter &&
+    css`
+      section:nth-child(1) {
+        margin-top: 20vh;
+        transition: margin 0.3s ease-in-out;
+      }
+    `}
 `;
 
 export default SearchPage;
