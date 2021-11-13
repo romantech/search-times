@@ -19,17 +19,18 @@ const Article = function ({
   imageUrl,
 }: ArticleListProps): JSX.Element {
   const dispatch = useDispatch();
-
   const Image = useImage(imageUrl);
 
   const favoriteHandler = () => {
+    let msg = '';
     if (isFavorite) {
       dispatch(removeFromFavorites(article._id));
-      message.success('즐겨찾기에서 삭제되었습니다');
+      msg = '즐겨찾기에서 삭제되었습니다';
     } else {
       dispatch(addToFavorites(article));
-      message.success('즐겨찾기에 추가되었습니다');
+      msg = '즐겨찾기에 추가되었습니다';
     }
+    message.success(msg);
   };
 
   return (
@@ -43,7 +44,7 @@ const Article = function ({
           </a>
         </p>
         <TagWrapper>
-          <TagSpan>{article.source}</TagSpan>
+          <TagSpan>{new Date(article.pub_date).toLocaleDateString()}</TagSpan>
           <TagSpan>{article.section_name}</TagSpan>
           <Tooltip title="Add to favorite">
             <Button
@@ -75,11 +76,11 @@ const ArticleContainer = styled.section`
 const TagWrapper = styled.section`
   display: flex;
   gap: 0.5rem;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
 `;
 
 const TagSpan = styled.span`
-  background: #d3d3d36f;
+  background: #d3d3d34c;
   padding: 8px 8px;
   border-radius: 10px;
 `;

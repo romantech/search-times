@@ -35,8 +35,9 @@ const useFetch = ({ method, path, query, payload }: ParamsType) => {
           setFetchedData(data);
           setError(null);
         })
-        .catch((err: Error) => {
-          setError(err);
+        .catch(err => {
+          const statusText = err.response?.statusText || '404 Not Found';
+          setError(statusText);
         })
         .finally(() => {
           setLoading(false);

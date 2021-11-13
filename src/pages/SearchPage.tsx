@@ -38,13 +38,13 @@ const SearchPage = function (): JSX.Element {
       </section>
       <ResultArea>
         {loading ? (
-          <Spin size="large" />
+          <Spin size="large" style={{ marginTop: '5vh' }} />
         ) : noResults || error ? (
           <Empty
             image={Empty.PRESENTED_IMAGE_SIMPLE}
             description={
               error
-                ? 'Too many request, Please try later'
+                ? `${error}, Please try later`
                 : 'No Articles, Try other keywords'
             }
           />
