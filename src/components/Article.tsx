@@ -1,21 +1,36 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { Button, Tooltip, message } from 'antd';
+import { useDispatch } from 'react-redux';
+import { StarOutlined, StarFilled } from '@ant-design/icons';
+import { addToFavorites, removeFromFavorites } from '../modules/favoriteList';
 import useImage from '../hooks/useImage';
-
 import { sliceCharactersUntilNum } from '../utils';
 
 interface ArticleListProps {
   article: Article;
+  isFavorite: boolean;
+  imageUrl: string;
 }
 
-const Article = function ({ article }: ArticleListProps): JSX.Element {
-  const domain = 'https://nytimes.com/';
-  const hasImage = article.multimedia[0] !== undefined;
-  const imageUrl = hasImage
-    ? `${domain}${article.multimedia[0].url}`
-    : 'https://i.ibb.co/0yYnWSn/default-fallback-image.png';
+const Article = function ({
+  article,
+  isFavorite,
+  imageUrl,
+}: ArticleListProps): JSX.Element {
+  const dispatch = useDispatch();
 
   const Image = useImage(imageUrl);
+
+  const favoriteHandler = () => {
+    if (isFavorite) {
+      dispatch(removeFromFavorites(article._id));
+      message.success('즐겨찾기에서 삭제되었습니다');
+    } else {
+      dispatch(addToFavorites(article));
+      message.success('즐겨찾기에 추가되었습니다');
+    }
+  };
 
   return (
     <ArticleContainer>
@@ -27,6 +42,18 @@ const Article = function ({ article }: ArticleListProps): JSX.Element {
             ...more
           </a>
         </p>
+        <TagWrapper>
+          <TagSpan>{article.source}</TagSpan>
+          <TagSpan>{article.section_name}</TagSpan>
+          <Tooltip title="Add to favorite">
+            <Button
+              type="default"
+              shape="circle"
+              icon={isFavorite ? <StarFilled /> : <StarOutlined />}
+              onClick={favoriteHandler}
+            />
+          </Tooltip>
+        </TagWrapper>
       </TextWrapper>
       <ImageWrapper>
         <Image />
@@ -43,6 +70,18 @@ const ArticleContainer = styled.section`
   border-bottom: 1px solid lightgray;
   padding: 1rem 0rem;
   gap: 2rem;
+`;
+
+const TagWrapper = styled.section`
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.6rem;
+`;
+
+const TagSpan = styled.span`
+  background: #d3d3d36f;
+  padding: 8px 8px;
+  border-radius: 10px;
 `;
 
 const TextWrapper = styled.section`
