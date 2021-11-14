@@ -6,6 +6,11 @@ import SearchBar from '../components/SearchBar';
 import useFetch from '../hooks/useFetch';
 import { HeadlineStyle, FlexCenterColumn } from '../styles/commonStyles';
 
+interface StyledProps {
+  isCenter: boolean;
+  width: number;
+}
+
 const SearchPage = function ({ width }: { width: number }): JSX.Element {
   const [term, setTerm] = useState('');
   const [noResults, setNoResults] = useState(false);
@@ -58,7 +63,7 @@ const SearchPage = function ({ width }: { width: number }): JSX.Element {
   );
 };
 
-const Container = styled.section<{ isCenter: boolean; width: number }>`
+const Container = styled.section<StyledProps>`
   ${FlexCenterColumn}
   gap: 1rem;
 
@@ -75,7 +80,7 @@ const Container = styled.section<{ isCenter: boolean; width: number }>`
     isCenter &&
     css`
       section:nth-child(1) {
-        margin-top: ${width > 768 ? '17vh' : '10vh'};
+        margin-top: ${width > 768 ? '18vh' : '10vh'};
         transition: margin-top 0.3s ease-in-out;
       }
     `}
