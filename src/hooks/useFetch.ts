@@ -10,7 +10,7 @@ interface ParamsType {
 
 axios.defaults.baseURL = 'https://api.nytimes.com/svc';
 axios.defaults.params = {
-  'api-key': process.env.REACT_APP_API_KEY,
+  'api-key': process.env.REACT_APP_VERCEL_ENV_API_KEY,
 };
 
 const useFetch = <T>({
