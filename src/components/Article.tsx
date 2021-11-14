@@ -57,7 +57,7 @@ const Article = function ({
               onClick={favoriteHandler}
             />
           </Tooltip>
-          {width > 375 && (
+          {width > 768 && (
             <TagSpan>{article.pub_date.split('T')[0] ?? 'No Date'}</TagSpan>
           )}
           <TagSpan>{article.section_name ?? 'Various'}</TagSpan>
