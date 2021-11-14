@@ -35,3 +35,7 @@ export const getImage = (
     : 'https://i.ibb.co/0yYnWSn/default-fallback-image.png';
   return imageUrl;
 };
+
+export const checkIsMobile = (): boolean => {
+  return window.innerWidth < 415 || 'ontouchstart' in document.documentElement;
+};

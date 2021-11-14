@@ -5,8 +5,8 @@ import { useDispatch } from 'react-redux';
 import { StarOutlined, StarFilled } from '@ant-design/icons';
 import { addToFavorites, removeFromFavorites } from '../modules/favoriteList';
 import useImage from '../hooks/useImage';
-import { sliceCharactersUntilNum } from '../utils';
-import { FlexCenterRow } from '../styles/commonStyles';
+import { sliceCharactersUntilNum, checkIsMobile } from '../utils';
+import { FlexCenterRow, FlexStartRow } from '../styles/commonStyles';
 
 interface ArticleListProps {
   article: Article;
@@ -34,8 +34,6 @@ const Article = function ({
     message.success(msg);
   };
 
-  const isMobile = window.innerWidth < 768;
-
   return (
     <ArticleContainer>
       <TextWrapper>
@@ -57,7 +55,9 @@ const Article = function ({
               onClick={favoriteHandler}
             />
           </Tooltip>
-          {!isMobile && <TagSpan>{article.pub_date?.split('T')[0]}</TagSpan>}
+          {!checkIsMobile() && (
+            <TagSpan>{article.pub_date?.split('T')[0]}</TagSpan>
+          )}
           <TagSpan>{article.section_name?.split(' ')[0]}</TagSpan>
         </TagWrapper>
       </TextWrapper>
@@ -85,8 +85,8 @@ const TagWrapper = styled.section`
 
 const TagSpan = styled.span`
   background: #d3d3d34c;
-  padding: 8px 8px;
-  border-radius: 10px;
+  padding: 7px 7px;
+  border-radius: 5px;
 `;
 
 const TextWrapper = styled.section`
@@ -106,9 +106,7 @@ const TextWrapper = styled.section`
   }
 
   div {
-    ${FlexCenterRow}
-    justify-content: flex-start;
-    align-items: flex-start;
+    ${FlexStartRow}
     color: gray;
 
     p {

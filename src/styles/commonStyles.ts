@@ -33,6 +33,12 @@ export const FlexCenterColumn = css`
   flex-direction: column;
 `;
 
+export const FlexStartRow = css`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+`;
+
 export const HeadlineStyle = css`
   letter-spacing: 0.7rem;
   font-size: 2.5rem;
