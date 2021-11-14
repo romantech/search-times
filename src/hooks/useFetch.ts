@@ -8,6 +8,11 @@ interface ParamsType {
   payload?: Record<string, unknown>;
 }
 
+interface ErrorType {
+  status: number;
+  statusText: string;
+}
+
 axios.defaults.baseURL = 'https://api.nytimes.com/svc';
 axios.defaults.params = {
   'api-key': process.env.REACT_APP_API_KEY,
@@ -21,7 +26,7 @@ const useFetch = <T>({
 }: ParamsType): [typeof fetchedData, boolean, typeof error] => {
   const [loading, setLoading] = useState(false);
   const [fetchedData, setFetchedData] = useState<T | null>(null);
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<ErrorType | null>(null);
 
   useEffect(() => {
     const source = axios.CancelToken.source();
@@ -41,9 +46,11 @@ const useFetch = <T>({
         })
         .catch(err => {
           if (axios.isCancel(err)) return; // 취소 토큰 실행 후 요청이 취소되어 발생한 에러라면, 에러 메시지 미출력
-
           const statusText = err.response?.statusText || '404 Not Found';
-          setError(statusText);
+          setError({
+            status: err.response.status,
+            statusText,
+          });
         })
         .finally(() => {
           setLoading(false);

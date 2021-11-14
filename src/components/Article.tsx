@@ -31,7 +31,7 @@ const Article = function ({
       dispatch(addToFavorites(article));
       msg = '즐겨찾기에 추가되었습니다';
     }
-    message.success(msg);
+    message.success(msg, 1);
   };
 
   return (
@@ -55,10 +55,10 @@ const Article = function ({
               onClick={favoriteHandler}
             />
           </Tooltip>
-          {!checkIsMobile() && (
-            <TagSpan>{article.pub_date?.split('T')[0]}</TagSpan>
+          {checkIsMobile() === false && (
+            <TagSpan>{article.pub_date.split('T')[0] ?? 'No Date'}</TagSpan>
           )}
-          <TagSpan>{article.section_name?.split(' ')[0]}</TagSpan>
+          <TagSpan>{article.section_name ?? 'Various'}</TagSpan>
         </TagWrapper>
       </TextWrapper>
       <ImageWrapper>

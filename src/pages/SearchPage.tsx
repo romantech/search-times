@@ -31,7 +31,7 @@ const SearchPage = function (): JSX.Element {
   }, [term]);
 
   return (
-    <Container isCenter={renderData.length === 0 && noResults === false}>
+    <Container isCenter={term === ''}>
       <section>
         <h1>SEARCH TIMES</h1>
         <div>
@@ -45,9 +45,9 @@ const SearchPage = function (): JSX.Element {
           <Empty
             image={Empty.PRESENTED_IMAGE_SIMPLE}
             description={
-              error
-                ? `${error}, Please try later`
-                : 'No Articles, Try other keywords'
+              error?.status === 429
+                ? `${error.statusText}, Please try later`
+                : `No Articles, Try other keywords`
             }
           />
         ) : (
