@@ -6,11 +6,11 @@ import { RootState } from '../modules';
 import ArticleList from '../components/ArticleList';
 import { HeadlineStyle, FlexCenterColumn } from '../styles/commonStyles';
 
-const FavoritePage = function (): JSX.Element {
+const FavoritePage = function ({ width }: { width: number }): JSX.Element {
   const { favorites } = useSelector((state: RootState) => state.favoriteList);
 
   return (
-    <FavoritePageContainer isCenter={favorites.length === 0}>
+    <FavoritePageContainer isCenter={favorites.length === 0} width={width}>
       <h1>FAVORITE ARTICLES</h1>
       <section>
         {favorites.length > 0 ? (
@@ -23,7 +23,10 @@ const FavoritePage = function (): JSX.Element {
   );
 };
 
-const FavoritePageContainer = styled.section<{ isCenter: boolean }>`
+const FavoritePageContainer = styled.section<{
+  isCenter: boolean;
+  width: number;
+}>`
   ${FlexCenterColumn}
   margin-top: 0;
   transition: margin-top 0.3s ease-in-out;
@@ -36,10 +39,10 @@ const FavoritePageContainer = styled.section<{ isCenter: boolean }>`
     margin-top: 5vh;
   }
 
-  ${({ isCenter }) =>
+  ${({ isCenter, width }) =>
     isCenter &&
     css`
-      margin-top: 20vh;
+      margin-top: ${width > 768 ? '17vh' : '10vh'};
       transition: margin-top 0.3s ease-in-out;
     `}
 `;
