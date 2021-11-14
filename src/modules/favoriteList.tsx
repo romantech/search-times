@@ -13,17 +13,19 @@ const initialState: FavoriteListState = {
 export const ADD_FAVORITES = 'favoriteList/ADD_FAVORITES';
 export const REMOVE_FAVORITES = 'favoriteList/REMOVE_FAVORITES';
 
-export const addToFavorites = (article: Article) =>
-  ({
-    type: ADD_FAVORITES,
-    payload: article,
-  } as const);
+export const addToFavorites = (
+  article: Article,
+): { type: typeof ADD_FAVORITES; payload: Article } => ({
+  type: ADD_FAVORITES,
+  payload: article,
+});
 
-export const removeFromFavorites = (id: string) =>
-  ({
-    type: REMOVE_FAVORITES,
-    payload: id,
-  } as const);
+export const removeFromFavorites = (
+  id: string,
+): { type: typeof REMOVE_FAVORITES; payload: string } => ({
+  type: REMOVE_FAVORITES,
+  payload: id,
+});
 
 export default function reducer(
   // eslint-disable-next-line default-param-last

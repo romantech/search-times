@@ -7,7 +7,7 @@ type SpinSize = 'default' | 'small' | 'large';
 
 const useImage = function (
   src: string,
-  spinSize = 'default' as SpinSize,
+  spinSize: SpinSize = 'default',
 ): () => JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
   const Image = function () {
