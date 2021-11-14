@@ -77,7 +77,7 @@ interface Response {
   meta: Record<MetaKey, integer>;
 }
 
-interface ArticleSearch {
+interface ArticleSearchResponse {
   status: string;
   copyright: string;
   response: Response;

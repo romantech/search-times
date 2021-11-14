@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 interface ParamsType {
-  method: 'get' | 'post';
+  method: 'get' | 'post' | 'patch';
   path: string;
   query?: string;
   payload?: Record<string, unknown>;
@@ -14,9 +13,14 @@ axios.defaults.params = {
   'api-key': process.env.REACT_APP_API_KEY,
 };
 
-const useFetch = ({ method, path, query, payload }: ParamsType) => {
+const useFetch = <T>({
+  method,
+  path,
+  query,
+  payload,
+}: ParamsType): [typeof fetchedData, boolean, typeof error] => {
   const [loading, setLoading] = useState(false);
-  const [fetchedData, setFetchedData] = useState<ArticleSearch | null>(null);
+  const [fetchedData, setFetchedData] = useState<T | null>(null);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
@@ -54,7 +58,7 @@ const useFetch = ({ method, path, query, payload }: ParamsType) => {
     };
   }, [method, path, payload, query]);
 
-  return [fetchedData, loading, error] as const;
+  return [fetchedData, loading, error]; /* as const */
 };
 
 export default useFetch;

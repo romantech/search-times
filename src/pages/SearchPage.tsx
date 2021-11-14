@@ -10,7 +10,7 @@ const SearchPage = function (): JSX.Element {
   const [term, setTerm] = useState('');
   const [noResults, setNoResults] = useState(false);
   const [renderData, setRenderData] = useState<Article[]>([]);
-  const [fetchedData, loading, error] = useFetch({
+  const [fetchedData, loading, error] = useFetch<ArticleSearchResponse>({
     method: 'get',
     path: 'search/v2/articlesearch.json',
     query: term,

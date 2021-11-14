@@ -13,7 +13,6 @@ const SearchBar = function ({ term, setTerm }: SearchBarProps): JSX.Element {
   const [debouncedTerm, setDebouncedTerm] = useState(term);
   const [typing, setTyping] = useState(false);
 
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
     setTyping(true);
     const isChanged = checkTerms(term, debouncedTerm);
@@ -22,6 +21,7 @@ const SearchBar = function ({ term, setTerm }: SearchBarProps): JSX.Element {
       return () => clearTimeout(timer);
     }
     setTyping(false);
+    return undefined; // fix consistent-return linter error
   }, [debouncedTerm, setTerm, term]);
 
   return (
