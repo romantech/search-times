@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components/macro';
 import { normalize } from 'styled-normalize';
+import { BackgroundPattern, ScrollStyle } from './commonStyles';
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -18,6 +19,8 @@ body {
     'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  ${BackgroundPattern}
+  ${ScrollStyle}
 }
 
 code {

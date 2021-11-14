@@ -4,6 +4,7 @@ import { Spin, Empty } from 'antd';
 import ArticleList from '../components/ArticleList';
 import SearchBar from '../components/SearchBar';
 import useFetch from '../hooks/useFetch';
+import { HeadlineStyle, FlexCenterColumn } from '../styles/commonStyles';
 
 const SearchPage = function (): JSX.Element {
   const [term, setTerm] = useState('');
@@ -30,7 +31,7 @@ const SearchPage = function (): JSX.Element {
   }, [term]);
 
   return (
-    <Container isCenter={renderData.length === 0}>
+    <Container isCenter={renderData.length === 0 && noResults === false}>
       <section>
         <h1>SEARCH TIMES</h1>
         <div>
@@ -58,23 +59,16 @@ const SearchPage = function (): JSX.Element {
 };
 
 const Container = styled.section<{ isCenter: boolean }>`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  ${FlexCenterColumn}
   gap: 1rem;
 
   h1 {
-    letter-spacing: 0.7rem;
-    font-size: 2.5rem;
-    text-align: center;
-    font-weight: bold;
+    ${HeadlineStyle}
   }
 
   section:nth-child(1) {
     margin-top: 0;
-    transition: margin 0.3s ease-in-out;
+    transition: margin-top 0.3s ease-in-out;
   }
 
   ${({ isCenter }) =>
@@ -82,7 +76,7 @@ const Container = styled.section<{ isCenter: boolean }>`
     css`
       section:nth-child(1) {
         margin-top: 20vh;
-        transition: margin 0.3s ease-in-out;
+        transition: margin-top 0.3s ease-in-out;
       }
     `}
 `;

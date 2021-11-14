@@ -6,6 +6,7 @@ import { StarOutlined, StarFilled } from '@ant-design/icons';
 import { addToFavorites, removeFromFavorites } from '../modules/favoriteList';
 import useImage from '../hooks/useImage';
 import { sliceCharactersUntilNum } from '../utils';
+import { FlexCenterRow } from '../styles/commonStyles';
 
 interface ArticleListProps {
   article: Article;
@@ -66,18 +67,16 @@ const Article = function ({
 };
 
 const ArticleContainer = styled.section`
+  ${FlexCenterRow}
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-bottom: 1px solid lightgray;
   padding: 1rem 0rem;
   gap: 1.5rem;
 `;
 
 const TagWrapper = styled.section`
-  display: flex;
-  align-items: center;
+  ${FlexCenterRow}
+  justify-content: flex-start;
   gap: 0.5rem;
   font-size: 0.7rem;
 `;
@@ -103,13 +102,11 @@ const TextWrapper = styled.section`
 `;
 
 const ImageWrapper = styled.section`
+  ${FlexCenterRow}
   min-width: 6.2rem;
   max-height: 5rem;
   overflow: hidden;
   width: 20%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export default Article;

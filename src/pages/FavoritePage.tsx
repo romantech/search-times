@@ -4,6 +4,7 @@ import { Empty } from 'antd';
 import { useSelector } from 'react-redux';
 import { RootState } from '../modules';
 import ArticleList from '../components/ArticleList';
+import { HeadlineStyle, FlexCenterColumn } from '../styles/commonStyles';
 
 const FavoritePage = function (): JSX.Element {
   const { favorites } = useSelector((state: RootState) => state.favoriteList);
@@ -15,7 +16,7 @@ const FavoritePage = function (): JSX.Element {
         {favorites.length > 0 ? (
           <ArticleList articles={favorites} />
         ) : (
-          <Empty description="No favorite articles" />
+          <Empty description="Nothing" />
         )}
       </section>
     </FavoritePageContainer>
@@ -23,18 +24,12 @@ const FavoritePage = function (): JSX.Element {
 };
 
 const FavoritePageContainer = styled.section<{ isCenter: boolean }>`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  ${FlexCenterColumn}
   margin-top: 0;
-  transition: margin 0.3s ease-in-out;
+  transition: margin-top 0.3s ease-in-out;
 
   h1 {
-    letter-spacing: 0.7rem;
-    font-size: 2.5rem;
-    text-align: center;
-    font-weight: bold;
+    ${HeadlineStyle}
   }
 
   .ant-empty {
@@ -45,7 +40,7 @@ const FavoritePageContainer = styled.section<{ isCenter: boolean }>`
     isCenter &&
     css`
       margin-top: 20vh;
-      transition: margin 0.3s ease-in-out;
+      transition: margin-top 0.3s ease-in-out;
     `}
 `;
 

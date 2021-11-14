@@ -4,6 +4,7 @@ import styled from 'styled-components/macro';
 import { RootState } from '../modules';
 import { getImage } from '../utils';
 import Article from './Article';
+import { FlexCenterColumn } from '../styles/commonStyles';
 
 interface ArticleListProps {
   articles: Article[];
@@ -34,10 +35,7 @@ const ArticleList = function ({ articles }: ArticleListProps): JSX.Element {
 const ArticleListContainer = styled.section`
   width: 85vw;
   max-width: 38rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  ${FlexCenterColumn}
 `;
 
 export default ArticleList;
