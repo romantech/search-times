@@ -10,7 +10,7 @@ interface ParamsType {
 
 axios.defaults.baseURL = 'https://api.nytimes.com/svc';
 axios.defaults.params = {
-  'api-key': process.env.REACT_APP_VERCEL_ENV_API_KEY,
+  'api-key': process.env.REACT_APP_API_KEY,
 };
 
 const useFetch = <T>({
@@ -40,6 +40,8 @@ const useFetch = <T>({
           setError(null);
         })
         .catch(err => {
+          if (axios.isCancel(err)) return; // 취소 토큰 실행 후 요청이 취소되어 발생한 에러라면, 에러 메시지 미출력
+
           const statusText = err.response?.statusText || '404 Not Found';
           setError(statusText);
         })
