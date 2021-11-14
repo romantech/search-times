@@ -23,6 +23,7 @@ const App = function (): JSX.Element {
 
 const StyledWrapper = styled.section`
   padding: 1rem 1.5rem;
+  height: 100vh;
 `;
 
 export default App;

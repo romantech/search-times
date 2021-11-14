@@ -37,5 +37,10 @@ export const getImage = (
 };
 
 export const checkIsMobile = (): boolean => {
-  return window.innerWidth < 415 || 'ontouchstart' in document.documentElement;
+  try {
+    document.createEvent('TouchEvent');
+    return true;
+  } catch (e) {
+    return false;
+  }
 };

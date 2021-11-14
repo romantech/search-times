@@ -5,8 +5,9 @@ import { useDispatch } from 'react-redux';
 import { StarOutlined, StarFilled } from '@ant-design/icons';
 import { addToFavorites, removeFromFavorites } from '../modules/favoriteList';
 import useImage from '../hooks/useImage';
-import { sliceCharactersUntilNum, checkIsMobile } from '../utils';
+import { sliceCharactersUntilNum } from '../utils';
 import { FlexCenterRow, FlexStartRow } from '../styles/commonStyles';
+import useCurrentSize from '../hooks/useCurrentSize';
 
 interface ArticleListProps {
   article: Article;
@@ -21,6 +22,7 @@ const Article = function ({
 }: ArticleListProps): JSX.Element {
   const dispatch = useDispatch();
   const Image = useImage(imageUrl);
+  const { width } = useCurrentSize();
 
   const favoriteHandler = () => {
     let msg = '';
@@ -55,7 +57,7 @@ const Article = function ({
               onClick={favoriteHandler}
             />
           </Tooltip>
-          {checkIsMobile() === false && (
+          {width > 375 && (
             <TagSpan>{article.pub_date.split('T')[0] ?? 'No Date'}</TagSpan>
           )}
           <TagSpan>{article.section_name ?? 'Various'}</TagSpan>
