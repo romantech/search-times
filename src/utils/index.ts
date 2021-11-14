@@ -3,13 +3,16 @@ export const sliceCharactersUntilNum = (
   num: number,
 ): string => {
   let count = 0;
-  return string.split('').reduce((acc, cur) => {
-    if (count < num) {
-      if (cur !== ' ') count++;
-      return acc.concat(cur);
-    }
-    return acc;
-  }, '');
+  return string
+    .split('')
+    .reduce((acc, cur) => {
+      if (count < num) {
+        if (cur !== ' ') count++;
+        return acc.concat(cur);
+      }
+      return acc;
+    }, '')
+    .trim();
 };
 
 export const checkTerms = (prevTerm: string, curTerm: string): boolean => {

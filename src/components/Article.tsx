@@ -34,16 +34,18 @@ const Article = function ({
     message.success(msg);
   };
 
+  const isMobile = window.innerWidth < 768;
+
   return (
     <ArticleContainer>
       <TextWrapper>
         <h2>{article.headline.main}</h2>
-        <p>
-          {sliceCharactersUntilNum(article.lead_paragraph, 30) + ' '}
+        <div>
+          <p>{sliceCharactersUntilNum(article.lead_paragraph, 30) + '...'}</p>
           <a href={article.web_url} target="_blank" rel="noreferrer">
-            ...more
+            more
           </a>
-        </p>
+        </div>
         <TagWrapper>
           <Tooltip
             title={isFavorite ? 'Remove from favorite' : 'Add to favorite'}
@@ -55,7 +57,7 @@ const Article = function ({
               onClick={favoriteHandler}
             />
           </Tooltip>
-          <TagSpan>{article.pub_date?.split('T')[0]}</TagSpan>
+          {!isMobile && <TagSpan>{article.pub_date?.split('T')[0]}</TagSpan>}
           <TagSpan>{article.section_name?.split(' ')[0]}</TagSpan>
         </TagWrapper>
       </TextWrapper>
@@ -78,7 +80,7 @@ const TagWrapper = styled.section`
   ${FlexCenterRow}
   justify-content: flex-start;
   gap: 0.5rem;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
 `;
 
 const TagSpan = styled.span`
@@ -96,8 +98,24 @@ const TextWrapper = styled.section`
     padding: 0;
     font-size: 1.2rem;
     overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: pre-line;
+  }
+
+  div {
+    ${FlexCenterRow}
+    justify-content: flex-start;
+    align-items: flex-start;
+    color: gray;
+
+    p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 `;
 

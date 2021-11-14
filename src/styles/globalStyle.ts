@@ -21,6 +21,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   ${BackgroundPattern}
   ${ScrollStyle}
+  overflow-y: scroll; // 스크롤바 밀림 현상 방지
 }
 
 code {
