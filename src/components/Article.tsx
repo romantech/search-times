@@ -125,7 +125,7 @@ const TextWrapper = styled.section`
 const ImageWrapper = styled.section`
   ${FlexCenterRow}
   position: relative;
-  width: 27%;
+  width: 21%;
   margin-top: 5px;
   min-height: 4.5rem;
 `;

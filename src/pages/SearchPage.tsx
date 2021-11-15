@@ -45,11 +45,13 @@ const SearchPage = function ({ width }: { width: number }): JSX.Element {
     }
   }, [term]);
 
-  const isLast = renderData.length === fetchedData?.response.meta.hits;
+  const isLastArticle = renderData.length === fetchedData?.response.meta.hits;
   const emptyMsg =
     error !== null
       ? `${error.statusText}, Please try later`
       : `No Articles, Try other keywords`;
+
+  console.log(isBottom);
 
   return (
     <Container isCenter={term === ''} width={width}>
@@ -72,7 +74,7 @@ const SearchPage = function ({ width }: { width: number }): JSX.Element {
           <ArticleList articles={renderData} />
         )}
       </section>
-      {isBottom && !isLast && (
+      {isBottom && !isLastArticle && (
         <Button
           type="primary"
           icon={<PlusCircleOutlined />}

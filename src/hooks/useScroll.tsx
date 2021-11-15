@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { checkIsMobile } from '../utils';
 
 const useInfiniteScroll = (): boolean => {
   const [isBottom, setIsBottom] = useState(false);
@@ -17,18 +18,24 @@ const useInfiniteScroll = (): boolean => {
       scrollHeight와 같으면 스크롤 가장 아래에 도달했을 때
     */
 
-    if (
+    // 모바일일 경우
+    if (checkIsMobile() === true) {
+      if (document.documentElement.scrollTop < 1000) {
+        setIsBottom(false);
+        return;
+      }
+
+      // 모바일이 아닐경우
+    } else if (
       document.body.scrollHeight -
         (window.innerHeight + document.documentElement.scrollTop) >
       200
     ) {
       setIsBottom(false);
-    } else {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      document.body.scrollHeight > 1500
-        ? setIsBottom(true)
-        : setIsBottom(false);
+      return;
     }
+
+    setIsBottom(true);
   }, []);
 
   useEffect(() => {
