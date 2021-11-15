@@ -75,10 +75,10 @@ const SearchPage = function ({ width }: { width: number }): JSX.Element {
       </section>
       {isShowMoreBtn && (
         <Button
-          type="primary"
+          block
           icon={<PlusCircleOutlined />}
           loading={loading}
-          style={{ marginBottom: '1rem' }}
+          style={{ maxWidth: '38rem' }}
           onClick={() => setCurrentPage(currentPage + 1)}
         >
           LOAD MORE
@@ -90,6 +90,7 @@ const SearchPage = function ({ width }: { width: number }): JSX.Element {
 
 const Container = styled.section<StyledProps>`
   ${FlexCenterColumn}
+  padding-bottom: 2rem;
   gap: 1rem;
 
   h1 {

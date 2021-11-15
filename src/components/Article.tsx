@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { StarOutlined, StarFilled } from '@ant-design/icons';
 import { addToFavorites, removeFromFavorites } from '../modules/favoriteList';
 import useImage from '../hooks/useImage';
-import { sliceCharactersUntilNum } from '../utils';
 import {
   FlexCenterRow,
   FlexStartRow,
@@ -46,7 +45,7 @@ const Article = function ({
         <TextWrapper>
           <h2>{article.headline.main}</h2>
           <div>
-            <p>{sliceCharactersUntilNum(article.lead_paragraph, 30) + '...'}</p>
+            <p>{article.lead_paragraph + '...'}</p>
             <a href={article.web_url} target="_blank" rel="noreferrer">
               more
             </a>
