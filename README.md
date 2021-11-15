@@ -1,6 +1,6 @@
 # SEARCH TIMES 미니 프로젝트
 
-![searchTimes_01](https://user-images.githubusercontent.com/8604840/141694271-6a9308e0-0bf7-44fc-84c8-6f1ae291e81a.gif)
+![searchTimes_01](https://user-images.githubusercontent.com/8604840/141826030-73aff288-eb89-4d94-80a1-4b133780e57d.gif)
 
 > _입력한 키워드로 뉴욕타임즈 기사를 검색하는 미니 어플리케이션입니다_
 
@@ -23,4 +23,4 @@
 - 기사 즐겨찾기
   - 원클릭 즐겨찾기 추가 / 해제
   - 즐겨찾기 데이터 로컬 스토리지 저장
-- 모바일 대응
+- 모바일 지원
