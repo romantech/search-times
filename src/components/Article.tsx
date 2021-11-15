@@ -95,10 +95,10 @@ const ArticleUpper = styled.section`
 `;
 
 const TextWrapper = styled.section`
-  width: 75%;
+  width: 73%;
 
   h2 {
-    margin: 0;
+    margin-bottom: 0.2rem;
     padding: 0;
     font-size: 1.2rem;
     overflow: hidden;
@@ -107,6 +107,7 @@ const TextWrapper = styled.section`
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
     white-space: pre-line;
+    line-height: 1.7rem;
   }
 
   div {
@@ -124,7 +125,7 @@ const TextWrapper = styled.section`
 const ImageWrapper = styled.section`
   ${FlexCenterRow}
   position: relative;
-  width: 25%;
+  width: 27%;
   margin-top: 5px;
   min-height: 4.5rem;
 `;
