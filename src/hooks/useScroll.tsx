@@ -16,6 +16,7 @@ const useInfiniteScroll = (): boolean => {
       scrollTop(스크롤바 위치) + innerHeight(화면 영역 높이)가
       scrollHeight와 같으면 스크롤 가장 아래에 도달했을 때
     */
+
     if (
       document.body.scrollHeight -
         (window.innerHeight + document.documentElement.scrollTop) >
@@ -23,7 +24,10 @@ const useInfiniteScroll = (): boolean => {
     ) {
       setIsBottom(false);
     } else {
-      setIsBottom(true);
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      document.body.scrollHeight > 1500
+        ? setIsBottom(true)
+        : setIsBottom(false);
     }
   }, []);
 

@@ -16,10 +16,10 @@ const SearchBar = function ({
   setCurrentPage,
 }: SearchBarProps): JSX.Element {
   const [debouncedTerm, setDebouncedTerm] = useState(term);
-  // const [typing, setTyping] = useState(false);
+  const [typing, setTyping] = useState(false);
 
   useEffect(() => {
-    // setTyping(true);
+    setTyping(true);
     const isChanged = checkTerms(term, debouncedTerm);
     if (isChanged) {
       const timer = setTimeout(() => {
@@ -28,7 +28,7 @@ const SearchBar = function ({
       }, 500);
       return () => clearTimeout(timer);
     }
-    // setTyping(false);
+    setTyping(false);
     return undefined; // fix consistent-return linter error
   }, [debouncedTerm, setCurrentPage, setTerm, term]);
 
@@ -37,7 +37,7 @@ const SearchBar = function ({
       onChange={({ target }) => setDebouncedTerm(target.value)}
       type="text"
       value={debouncedTerm}
-      // loading={typing}
+      loading={typing}
       placeholder="Input keywords"
       maxLength={100}
       size="large"

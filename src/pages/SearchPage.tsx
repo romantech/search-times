@@ -64,7 +64,7 @@ const SearchPage = function ({ width }: { width: number }): JSX.Element {
         </div>
       </section>
       <section>
-        {loading && currentPage === 0 ? (
+        {loading && !isBottom ? (
           <Spin size="large" style={{ marginTop: '5vh' }} />
         ) : noResults || error ? (
           <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={emptyMsg} />
