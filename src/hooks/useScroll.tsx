@@ -22,7 +22,6 @@ const useInfiniteScroll = (): boolean => {
     if (checkIsMobile() === true) {
       if (document.documentElement.scrollTop < 1000) {
         setIsBottom(false);
-        return;
       }
 
       // 모바일이 아닐경우
@@ -32,10 +31,9 @@ const useInfiniteScroll = (): boolean => {
       200
     ) {
       setIsBottom(false);
-      return;
+    } else {
+      setIsBottom(true);
     }
-
-    setIsBottom(true);
   }, []);
 
   useEffect(() => {
