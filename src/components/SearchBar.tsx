@@ -5,31 +5,39 @@ import { checkTerms } from '../utils';
 interface SearchBarProps {
   term: string;
   setTerm: React.Dispatch<React.SetStateAction<string>>;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const { Search } = Input;
 
-const SearchBar = function ({ term, setTerm }: SearchBarProps): JSX.Element {
+const SearchBar = function ({
+  term,
+  setTerm,
+  setCurrentPage,
+}: SearchBarProps): JSX.Element {
   const [debouncedTerm, setDebouncedTerm] = useState(term);
-  const [typing, setTyping] = useState(false);
+  // const [typing, setTyping] = useState(false);
 
   useEffect(() => {
-    setTyping(true);
+    // setTyping(true);
     const isChanged = checkTerms(term, debouncedTerm);
     if (isChanged) {
-      const timer = setTimeout(() => setTerm(debouncedTerm), 500);
+      const timer = setTimeout(() => {
+        setTerm(debouncedTerm);
+        setCurrentPage(0);
+      }, 500);
       return () => clearTimeout(timer);
     }
-    setTyping(false);
+    // setTyping(false);
     return undefined; // fix consistent-return linter error
-  }, [debouncedTerm, setTerm, term]);
+  }, [debouncedTerm, setCurrentPage, setTerm, term]);
 
   return (
     <Search
       onChange={({ target }) => setDebouncedTerm(target.value)}
       type="text"
       value={debouncedTerm}
-      loading={typing}
+      // loading={typing}
       placeholder="Input keywords"
       maxLength={100}
       size="large"

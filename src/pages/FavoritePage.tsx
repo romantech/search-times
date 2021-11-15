@@ -31,6 +31,7 @@ const FavoritePage = function ({ width }: { width: number }): JSX.Element {
 const FavoritePageContainer = styled.section<StyledProps>`
   ${FlexCenterColumn}
   margin-top: 0;
+  padding-bottom: 2rem;
   transition: margin-top 0.3s ease-in-out;
 
   h1 {

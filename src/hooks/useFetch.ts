@@ -5,6 +5,7 @@ interface ParamsType {
   method: 'get' | 'post' | 'patch';
   path: string;
   query?: string;
+  page?: number;
   payload?: Record<string, unknown>;
 }
 
@@ -22,6 +23,7 @@ const useFetch = <T>({
   method,
   path,
   query,
+  page,
   payload,
 }: ParamsType): [typeof fetchedData, boolean, typeof error] => {
   const [loading, setLoading] = useState(false);
@@ -36,7 +38,11 @@ const useFetch = <T>({
       setLoading(true);
       axios({
         method,
-        url: query ? `${path}?q=${query}` : path,
+        url: path,
+        params: {
+          q: query,
+          page,
+        },
         data: method === 'post' ? payload : null,
         cancelToken: source.token, // 취소 토큰 할당
       })
@@ -65,7 +71,7 @@ const useFetch = <T>({
       // 따라서 A 요청후 바로 B를 요청하면 A 요청이 취소됨
       source.cancel();
     };
-  }, [method, path, payload, query]);
+  }, [method, page, path, payload, query]);
 
   return [fetchedData, loading, error]; /* as const */
 };
