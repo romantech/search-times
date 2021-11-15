@@ -69,7 +69,9 @@ const Article = function ({
         <TagSpan>{article.pub_date.split('T')[0] || 'No Date'}</TagSpan>
         <TagSpan>{article.section_name || 'Various'}</TagSpan>
         {width > 768 && (
-          <TagSpan>{article.byline.original || 'No Author'}</TagSpan>
+          <TagSpan>
+            {article.byline.original?.split(',')[0] || 'No Author'}
+          </TagSpan>
         )}
       </ArticleLower>
     </ArticleContainer>
