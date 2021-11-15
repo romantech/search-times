@@ -6,7 +6,11 @@ import { StarOutlined, StarFilled } from '@ant-design/icons';
 import { addToFavorites, removeFromFavorites } from '../modules/favoriteList';
 import useImage from '../hooks/useImage';
 import { sliceCharactersUntilNum } from '../utils';
-import { FlexCenterRow, FlexStartRow } from '../styles/commonStyles';
+import {
+  FlexCenterRow,
+  FlexStartRow,
+  FlexCenterColumn,
+} from '../styles/commonStyles';
 import useCurrentSize from '../hooks/useCurrentSize';
 
 interface ArticleListProps {
@@ -38,62 +42,58 @@ const Article = function ({
 
   return (
     <ArticleContainer>
-      <TextWrapper>
-        <h2>{article.headline.main}</h2>
-        <div>
-          <p>{sliceCharactersUntilNum(article.lead_paragraph, 30) + '...'}</p>
-          <a href={article.web_url} target="_blank" rel="noreferrer">
-            more
-          </a>
-        </div>
-        <TagWrapper>
-          <Tooltip
-            title={isFavorite ? 'Remove from favorite' : 'Add to favorite'}
-          >
-            <Button
-              type="default"
-              shape="circle"
-              icon={isFavorite ? <StarFilled /> : <StarOutlined />}
-              onClick={favoriteHandler}
-            />
-          </Tooltip>
-          {width > 768 && (
-            <TagSpan>{article.pub_date.split('T')[0] ?? 'No Date'}</TagSpan>
-          )}
-          <TagSpan>{article.section_name ?? 'Various'}</TagSpan>
-        </TagWrapper>
-      </TextWrapper>
-      <ImageWrapper>
-        <Image />
-      </ImageWrapper>
+      <ArticleUpper>
+        <TextWrapper>
+          <h2>{article.headline.main}</h2>
+          <div>
+            <p>{sliceCharactersUntilNum(article.lead_paragraph, 30) + '...'}</p>
+            <a href={article.web_url} target="_blank" rel="noreferrer">
+              more
+            </a>
+          </div>
+        </TextWrapper>
+        <ImageWrapper>
+          <Image />
+        </ImageWrapper>
+      </ArticleUpper>
+      <ArticleLower>
+        <Tooltip
+          title={isFavorite ? 'Remove from favorite' : 'Add to favorite'}
+        >
+          <Button
+            shape="circle"
+            icon={isFavorite ? <StarFilled /> : <StarOutlined />}
+            onClick={favoriteHandler}
+          />
+        </Tooltip>
+        <TagSpan>{article.pub_date.split('T')[0] || 'No Date'}</TagSpan>
+        <TagSpan>{article.section_name || 'Various'}</TagSpan>
+        {width > 768 && (
+          <TagSpan>{article.byline.original || 'No Author'}</TagSpan>
+        )}
+      </ArticleLower>
     </ArticleContainer>
   );
 };
 
 const ArticleContainer = styled.section`
-  ${FlexCenterRow}
+  ${FlexCenterColumn}
   width: 100%;
   border-bottom: 1px solid lightgray;
-  padding: 1rem 0rem;
-  gap: 1.5rem;
-`;
-
-const TagWrapper = styled.section`
-  ${FlexCenterRow}
-  justify-content: flex-start;
+  padding: 1rem 0;
   gap: 0.5rem;
-  font-size: 0.75rem;
 `;
 
-const TagSpan = styled.span`
-  background: #d3d3d34c;
-  padding: 7px 7px;
-  border-radius: 5px;
+const ArticleUpper = styled.section`
+  ${FlexCenterRow}
+  align-items:flex-start;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1rem;
 `;
 
 const TextWrapper = styled.section`
-  width: 80%;
-  overflow: hidden;
+  width: 75%;
 
   h2 {
     margin: 0;
@@ -121,10 +121,23 @@ const TextWrapper = styled.section`
 
 const ImageWrapper = styled.section`
   ${FlexCenterRow}
-  min-width: 6.2rem;
-  max-height: 5rem;
-  overflow: hidden;
-  width: 20%;
+  position: relative;
+  width: 25%;
+  margin-top: 5px;
+  min-height: 4.5rem;
+`;
+
+const ArticleLower = styled.section`
+  ${FlexCenterRow}
+  margin-right: auto;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+`;
+
+const TagSpan = styled.span`
+  background: #d3d3d34c;
+  padding: 7px 7px;
+  border-radius: 5px;
 `;
 
 export default Article;

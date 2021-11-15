@@ -31,7 +31,11 @@ const useImage = function (
 };
 
 const StyledImage = styled.img<{ isLoading: boolean }>`
-  max-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   display: ${({ isLoading }) => isLoading && 'none'};
 `;
