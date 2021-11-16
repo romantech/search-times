@@ -74,7 +74,7 @@ const Article = function ({
         <TextWrapper>
           <h2>{getHighlightedText(article.headline.main, term)}</h2>
           <div>
-            <p>{article.lead_paragraph}</p>
+            <p>{article.lead_paragraph + '...'}</p>
             <a href={article.web_url} target="_blank" rel="noreferrer">
               more
             </a>
@@ -124,6 +124,8 @@ const ArticleUpper = styled.section`
 
 const TextWrapper = styled.section`
   width: 73%;
+
+  // mark는 하이라이트된 택스트를 정의할 때 사용하는 태그
   mark {
     background-color: #ffff005a;
   }
