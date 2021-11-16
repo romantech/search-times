@@ -19,7 +19,7 @@ const FavoritePage = function ({ width }: { width: number }): JSX.Element {
       <h1>FAVORITE ARTICLES</h1>
       <section>
         {favorites.length > 0 ? (
-          <ArticleList articles={favorites} />
+          <ArticleList articles={favorites} term="" />
         ) : (
           <Empty description="Nothing" />
         )}

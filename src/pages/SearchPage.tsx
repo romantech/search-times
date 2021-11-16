@@ -70,7 +70,7 @@ const SearchPage = function ({ width }: { width: number }): JSX.Element {
         ) : noResults || error ? (
           <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={emptyMsg} />
         ) : (
-          <ArticleList articles={renderData} />
+          <ArticleList articles={renderData} term={term} />
         )}
       </section>
       {isShowMoreBtn && (

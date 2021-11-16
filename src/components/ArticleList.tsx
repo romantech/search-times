@@ -8,9 +8,13 @@ import { FlexCenterColumn } from '../styles/commonStyles';
 
 interface ArticleListProps {
   articles: Article[];
+  term: string;
 }
 
-const ArticleList = function ({ articles }: ArticleListProps): JSX.Element {
+const ArticleList = function ({
+  articles,
+  term,
+}: ArticleListProps): JSX.Element {
   const { favorites } = useSelector((state: RootState) => state.favoriteList);
 
   return (
@@ -21,6 +25,7 @@ const ArticleList = function ({ articles }: ArticleListProps): JSX.Element {
 
         return (
           <Article
+            term={term}
             key={article._id}
             article={article}
             isFavorite={isFavorite}

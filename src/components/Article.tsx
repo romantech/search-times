@@ -16,12 +16,14 @@ interface ArticleListProps {
   article: Article;
   isFavorite: boolean;
   imageUrl: string;
+  term: string;
 }
 
 const Article = function ({
   article,
   isFavorite,
   imageUrl,
+  term,
 }: ArticleListProps): JSX.Element {
   const dispatch = useDispatch();
   const Image = useImage(imageUrl);
@@ -39,13 +41,40 @@ const Article = function ({
     message.success(msg, 1);
   };
 
+  const getHighlightedText = (text: string, query: string) => {
+    const re = new RegExp(`(${query})`, 'gi');
+    // 정규식 i 플래그 대소문자 구분 안함, g 패턴과 일치하는 모든 내용 검색
+    if (query !== '' && text.match(re)) {
+      const parts = text.split(re);
+      // text: Europe had over half of the world’s Covid deaths early this month, the W.H.O. says.
+      // query: europe had
+      // str.match(re) -> ['Europe had']
+      // text.split(re) -> ['Europe had', '...'] -> query와 일치하는 단어를 기준으로 split
+
+      return (
+        <>
+          {/* toString(36) -> 36진수로 변환 */}
+          {parts.map(part =>
+            part.toLowerCase() === query.toLowerCase() ? (
+              <mark key={Math.random().toString(36).slice(2, 12)}>{part}</mark>
+            ) : (
+              part
+            ),
+          )}
+        </>
+      );
+    }
+
+    return text;
+  };
+
   return (
     <ArticleContainer>
       <ArticleUpper>
         <TextWrapper>
-          <h2>{article.headline.main}</h2>
+          <h2>{getHighlightedText(article.headline.main, term)}</h2>
           <div>
-            <p>{article.lead_paragraph + '...'}</p>
+            <p>{article.lead_paragraph}</p>
             <a href={article.web_url} target="_blank" rel="noreferrer">
               more
             </a>
@@ -95,6 +124,9 @@ const ArticleUpper = styled.section`
 
 const TextWrapper = styled.section`
   width: 73%;
+  mark {
+    background-color: #ffff005a;
+  }
 
   h2 {
     margin-bottom: 0.2rem;
