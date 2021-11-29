@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from 'antd';
-import { checkTerms } from '../utils';
+import { checkIsTermChanged } from '../utils';
 
 interface SearchBarProps {
   term: string;
@@ -19,22 +19,25 @@ const SearchBar = function ({
   const [typing, setTyping] = useState(false);
 
   useEffect(() => {
-    setTyping(true);
-    const isChanged = checkTerms(term, debouncedTerm);
+    let timer: NodeJS.Timeout;
+    const isChanged = checkIsTermChanged(term, debouncedTerm);
     if (isChanged) {
-      const timer = setTimeout(() => {
+      timer = setTimeout(() => {
         setTerm(debouncedTerm);
         setCurrentPage(0);
+        setTyping(false);
       }, 500);
-      return () => clearTimeout(timer);
     }
-    setTyping(false);
-    return undefined; // fix consistent-return linter error
+
+    return () => clearTimeout(timer);
   }, [debouncedTerm, setCurrentPage, setTerm, term]);
 
   return (
     <Search
-      onChange={({ target }) => setDebouncedTerm(target.value)}
+      onChange={({ target }) => {
+        setTyping(true);
+        setDebouncedTerm(target.value);
+      }}
       type="text"
       value={debouncedTerm}
       loading={typing}

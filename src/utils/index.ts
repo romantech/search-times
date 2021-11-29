@@ -15,14 +15,16 @@ export const sliceCharactersUntilNum = (
     .trim();
 };
 
-export const checkTerms = (prevTerm: string, curTerm: string): boolean => {
-  let result = true;
+export const checkIsTermChanged = (
+  prevTerm: string,
+  curTerm: string,
+): boolean => {
   const trimmedPrevTerm = prevTerm.trim();
   const trimmedCurTerm = curTerm.trim();
   if (trimmedPrevTerm === trimmedCurTerm) {
-    result = false;
+    return false;
   }
-  return result;
+  return true;
 };
 
 export const getImage = (
