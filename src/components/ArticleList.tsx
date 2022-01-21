@@ -40,7 +40,7 @@ const ArticleList = function ({
 const ArticleListContainer = styled.section`
   width: 85vw;
   max-width: 38rem;
-  ${FlexCenterColumn}
+  ${FlexCenterColumn};
 `;
 
 export default ArticleList;

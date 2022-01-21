@@ -4,7 +4,7 @@ import { Empty } from 'antd';
 import { useSelector } from 'react-redux';
 import { RootState } from '../modules';
 import ArticleList from '../components/ArticleList';
-import { HeadlineStyle, FlexCenterColumn } from '../styles/commonStyles';
+import { FlexCenterColumn, HeadlineStyle } from '../styles/commonStyles';
 
 interface StyledProps {
   isCenter: boolean;
@@ -29,13 +29,13 @@ const FavoritePage = function ({ width }: { width: number }): JSX.Element {
 };
 
 const FavoritePageContainer = styled.section<StyledProps>`
-  ${FlexCenterColumn}
+  ${FlexCenterColumn};
   margin-top: 0;
   padding-bottom: 2rem;
   transition: margin-top 0.3s ease-in-out;
 
   h1 {
-    ${HeadlineStyle}
+    ${HeadlineStyle};
   }
 
   .ant-empty {

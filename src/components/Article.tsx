@@ -1,14 +1,16 @@
+// noinspection JSIgnoredPromiseFromCall
+
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Button, Tooltip, message } from 'antd';
+import { Button, message, Tooltip } from 'antd';
 import { useDispatch } from 'react-redux';
-import { StarOutlined, StarFilled } from '@ant-design/icons';
+import { StarFilled, StarOutlined } from '@ant-design/icons';
 import { addToFavorites, removeFromFavorites } from '../modules/favoriteList';
 import useImage from '../hooks/useImage';
 import {
+  FlexCenterColumn,
   FlexCenterRow,
   FlexStartRow,
-  FlexCenterColumn,
 } from '../styles/commonStyles';
 import useCurrentSize from '../hooks/useCurrentSize';
 
@@ -30,7 +32,7 @@ const Article = function ({
   const { width } = useCurrentSize();
 
   const favoriteHandler = () => {
-    let msg = '';
+    let msg;
     if (isFavorite) {
       dispatch(removeFromFavorites(article._id));
       msg = '즐겨찾기에서 삭제되었습니다';
@@ -107,7 +109,7 @@ const Article = function ({
 };
 
 const ArticleContainer = styled.section`
-  ${FlexCenterColumn}
+  ${FlexCenterColumn};
   width: 100%;
   border-bottom: 1px solid lightgray;
   padding: 1rem 0;
@@ -115,8 +117,8 @@ const ArticleContainer = styled.section`
 `;
 
 const ArticleUpper = styled.section`
-  ${FlexCenterRow}
-  align-items:flex-start;
+  ${FlexCenterRow};
+  align-items: flex-start;
   justify-content: space-between;
   width: 100%;
   gap: 1rem;
@@ -144,7 +146,7 @@ const TextWrapper = styled.section`
   }
 
   div {
-    ${FlexStartRow}
+    ${FlexStartRow};
     color: gray;
 
     p {
@@ -156,7 +158,7 @@ const TextWrapper = styled.section`
 `;
 
 const ImageWrapper = styled.section`
-  ${FlexCenterRow}
+  ${FlexCenterRow};
   position: relative;
   width: 21%;
   margin-top: 5px;
@@ -164,7 +166,7 @@ const ImageWrapper = styled.section`
 `;
 
 const ArticleLower = styled.section`
-  ${FlexCenterRow}
+  ${FlexCenterRow};
   margin-right: auto;
   gap: 0.5rem;
   font-size: 0.75rem;

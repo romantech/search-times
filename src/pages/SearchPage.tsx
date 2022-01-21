@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components/macro';
-import { Spin, Empty, Button } from 'antd';
+import { Button, Empty, Spin } from 'antd';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import ArticleList from '../components/ArticleList';
 import SearchBar from '../components/SearchBar';
 import useFetch from '../hooks/useFetch';
 import useScroll from '../hooks/useScroll';
-import { HeadlineStyle, FlexCenterColumn } from '../styles/commonStyles';
+import { FlexCenterColumn, HeadlineStyle } from '../styles/commonStyles';
 
 interface StyledProps {
   isCenter: boolean;
@@ -89,7 +89,7 @@ const SearchPage = function ({ width }: { width: number }): JSX.Element {
 };
 
 const Container = styled.section<StyledProps>`
-  ${FlexCenterColumn}
+  ${FlexCenterColumn};
   padding-bottom: 2rem;
   gap: 1rem;
 

@@ -10,7 +10,7 @@ const useImage = function (
   spinSize: SpinSize = 'default',
 ): () => JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
-  const Image = function () {
+  return function Image() {
     return (
       <>
         {isLoading && <Spin size={spinSize} />}
@@ -26,8 +26,6 @@ const useImage = function (
       </>
     );
   };
-
-  return Image;
 };
 
 const StyledImage = styled.img<{ isLoading: boolean }>`

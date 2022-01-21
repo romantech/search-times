@@ -5,8 +5,8 @@
 // https://github.com/rt2zz/redux-persist/issues/1140
 
 declare module 'redux-persist/es/persistStore' {
-  import { Store, Action, AnyAction } from 'redux';
-  import { PersistorOptions, Persistor } from 'redux-persist/es/types';
+  import { Action, AnyAction, Store } from 'redux';
+  import { Persistor, PersistorOptions } from 'redux-persist/es/types';
 
   /**
    * @desc Creates a persistor for a given store.
@@ -15,10 +15,7 @@ declare module 'redux-persist/es/persistStore' {
    * @param callback bootstrap callback of sort.
    */
   // tslint:disable-next-line: strict-export-declare-modifiers
-  export default function persistStore<
-    S = any,
-    A extends Action<any> = AnyAction,
-  >(
+  export default function persistStore<S = any, A extends Action = AnyAction>(
     store: Store<S, A>,
     persistorOptions?: PersistorOptions | null,
     callback?: () => any,

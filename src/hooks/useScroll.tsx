@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { checkIsMobile } from '../utils';
 
 const useInfiniteScroll = (): boolean => {
@@ -19,7 +19,7 @@ const useInfiniteScroll = (): boolean => {
     */
 
     // 모바일일 경우
-    if (checkIsMobile() === true) {
+    if (checkIsMobile()) {
       if (document.documentElement.scrollTop < 1000) {
         return setIsBottom(false);
       }

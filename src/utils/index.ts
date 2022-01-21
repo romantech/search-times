@@ -32,10 +32,9 @@ export const getImage = (
   domain = 'https://nytimes.com/',
 ): string => {
   const hasImage = imgUrl !== undefined && imgUrl !== 'fallback';
-  const imageUrl = hasImage
+  return hasImage
     ? `${domain}${imgUrl}`
     : 'https://i.ibb.co/0yYnWSn/default-fallback-image.png';
-  return imageUrl;
 };
 
 export const checkIsMobile = (): boolean => {

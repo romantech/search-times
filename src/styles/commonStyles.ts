@@ -29,7 +29,7 @@ export const FlexCenterRow = css`
 `;
 
 export const FlexCenterColumn = css`
-  ${FlexCenterRow}
+  ${FlexCenterRow};
   flex-direction: column;
 `;
 
