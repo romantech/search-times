@@ -11,7 +11,7 @@ interface StyledProps {
   width: number;
 }
 
-const FavoritePage = function ({ width }: { width: number }): JSX.Element {
+function FavoritePage({ width }: { width: number }): JSX.Element {
   const { favorites } = useSelector((state: RootState) => state.favoriteList);
 
   return (
@@ -26,7 +26,7 @@ const FavoritePage = function ({ width }: { width: number }): JSX.Element {
       </section>
     </FavoritePageContainer>
   );
-};
+}
 
 const FavoritePageContainer = styled.section<StyledProps>`
   ${FlexCenterColumn};

@@ -5,7 +5,7 @@ import { getImage } from '../utils';
 
 type SpinSize = 'default' | 'small' | 'large';
 
-const useImage = function (
+function useImage(
   src: string,
   spinSize: SpinSize = 'default',
 ): () => JSX.Element {
@@ -26,7 +26,7 @@ const useImage = function (
       </>
     );
   };
-};
+}
 
 const StyledImage = styled.img<{ isLoading: boolean }>`
   position: absolute;

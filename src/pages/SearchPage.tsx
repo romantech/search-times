@@ -13,7 +13,7 @@ interface StyledProps {
   width: number;
 }
 
-const SearchPage = function ({ width }: { width: number }): JSX.Element {
+function SearchPage({ width }: { width: number }): JSX.Element {
   const [term, setTerm] = useState('');
   const [noResults, setNoResults] = useState(false);
   const [currentPage, setCurrentPage] = useState<number>(0);
@@ -86,7 +86,7 @@ const SearchPage = function ({ width }: { width: number }): JSX.Element {
       )}
     </Container>
   );
-};
+}
 
 const Container = styled.section<StyledProps>`
   ${FlexCenterColumn};

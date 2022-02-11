@@ -7,7 +7,7 @@ import useCurrentSize from './hooks/useCurrentSize';
 
 const { TabPane } = Tabs;
 
-const App = function (): JSX.Element {
+function App(): JSX.Element {
   const { width } = useCurrentSize();
 
   return (
@@ -22,7 +22,7 @@ const App = function (): JSX.Element {
       </Tabs>
     </StyledWrapper>
   );
-};
+}
 
 const StyledWrapper = styled.section`
   padding: 1rem 1.5rem;

@@ -11,10 +11,7 @@ interface ArticleListProps {
   term: string;
 }
 
-const ArticleList = function ({
-  articles,
-  term,
-}: ArticleListProps): JSX.Element {
+function ArticleList({ articles, term }: ArticleListProps): JSX.Element {
   const { favorites } = useSelector((state: RootState) => state.favoriteList);
 
   return (
@@ -35,7 +32,7 @@ const ArticleList = function ({
       })}
     </ArticleListContainer>
   );
-};
+}
 
 const ArticleListContainer = styled.section`
   width: 85vw;

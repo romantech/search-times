@@ -1,5 +1,3 @@
-// noinspection JSIgnoredPromiseFromCall
-
 import React from 'react';
 import styled from 'styled-components/macro';
 import { Button, message, Tooltip } from 'antd';
@@ -21,7 +19,7 @@ interface ArticleListProps {
   term: string;
 }
 
-const Article = function ({
+function Article({
   article,
   isFavorite,
   imageUrl,
@@ -31,7 +29,7 @@ const Article = function ({
   const Image = useImage(imageUrl);
   const { width } = useCurrentSize();
 
-  const favoriteHandler = () => {
+  const favoriteHandler = async () => {
     let msg;
     if (isFavorite) {
       dispatch(removeFromFavorites(article._id));
@@ -40,7 +38,7 @@ const Article = function ({
       dispatch(addToFavorites(article));
       msg = '즐겨찾기에 추가되었습니다';
     }
-    message.success(msg, 1);
+    await message.success(msg, 1);
   };
 
   const getHighlightedText = (text: string, query: string) => {
@@ -106,7 +104,7 @@ const Article = function ({
       </ArticleLower>
     </ArticleContainer>
   );
-};
+}
 
 const ArticleContainer = styled.section`
   ${FlexCenterColumn};

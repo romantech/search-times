@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Input } from 'antd';
 import { checkIsTermChanged } from '../utils';
 
@@ -10,7 +10,7 @@ interface SearchBarProps {
 
 const { Search } = Input;
 
-const SearchBar = function ({
+function SearchBar({
   term,
   setTerm,
   setCurrentPage,
@@ -47,6 +47,6 @@ const SearchBar = function ({
       style={{ width: '85vw', maxWidth: '38rem' }}
     />
   );
-};
+}
 
 export default SearchBar;

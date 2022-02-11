@@ -21,10 +21,7 @@ export const checkIsTermChanged = (
 ): boolean => {
   const trimmedPrevTerm = prevTerm.trim();
   const trimmedCurTerm = curTerm.trim();
-  if (trimmedPrevTerm === trimmedCurTerm) {
-    return false;
-  }
-  return true;
+  return trimmedPrevTerm !== trimmedCurTerm;
 };
 
 export const getImage = (
