@@ -1,14 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { applyMiddleware, createStore, compose } from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { createRoot } from 'react-dom/client';
 import rootReducer from './modules';
 import App from './App';
 import GlobalStyle from './styles/globalStyle';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
+
+const rootElement = document.getElementById('root');
+if (!rootElement) throw new Error('Failed to find the root element');
+const root = createRoot(rootElement);
 
 const enhancer =
   process.env.NODE_ENV === 'production'
@@ -18,7 +22,7 @@ const enhancer =
 const store = createStore(rootReducer, enhancer);
 const persistor = persistStore(store);
 
-ReactDOM.render(
+root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
@@ -27,5 +31,4 @@ ReactDOM.render(
       <App />
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root'),
 );
