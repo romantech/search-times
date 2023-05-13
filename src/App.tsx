@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { Tabs } from 'antd';
-import { Analytics } from '@vercel/analytics/react';
+
 import SearchPage from './pages/SearchPage';
 import FavoritePage from './pages/FavoritePage';
 import useCurrentSize from './hooks/useCurrentSize';
@@ -13,7 +13,6 @@ function App(): JSX.Element {
 
   return (
     <StyledWrapper>
-      <Analytics />
       <Tabs defaultActiveKey="1">
         <TabPane tab="SEARCH" key="1">
           <SearchPage width={width} />

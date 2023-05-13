@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createRoot } from 'react-dom/client';
+import { Analytics } from '@vercel/analytics/react';
 import rootReducer from './modules';
 import App from './App';
 import GlobalStyle from './styles/globalStyle';
@@ -29,6 +30,7 @@ root.render(
         <GlobalStyle />
       </PersistGate>
       <App />
+      <Analytics />
     </Provider>
   </React.StrictMode>,
 );
