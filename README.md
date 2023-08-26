@@ -1,4 +1,4 @@
-# SEARCH TIMES 미니 프로젝트
+# Search Times
 
 ![searchTimes_01](https://user-images.githubusercontent.com/8604840/141826030-73aff288-eb89-4d94-80a1-4b133780e57d.gif)
 
