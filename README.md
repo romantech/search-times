@@ -9,21 +9,20 @@
 
 # 사용 스택 / 라이브러리
 
-- TypeScript
-- React(CRA) + Hooks
-- Redux
-- Styled-Components
-- Ant Design
+- Core: React + TypeScript
+- State Management: Redux
+- Styling: Styled-Components
+- UI Library: Ant Design
 
 # 주요 기능
 
-- 뉴욕타임즈 API 활용, 기사(Article) 검색
+- 뉴욕타임즈 API를 활용한 기사(Article) 검색
   - 검색창 키워드 변경시 자동 검색
-  - 중복 요청일 경우 이전 요청 취소(Axios Cancel Token 활용)
+  - 중복 요청 시 이전 요청 취소(Axios Cancel Token 활용)
 - 기사 즐겨찾기
   - 원클릭 즐겨찾기 추가 / 해제
   - 즐겨찾기 데이터 로컬 스토리지 저장
-- 모바일 지원
+- 반응형 웹 지원
 
 # 프로젝트 목적
 - 실시간 검색창에 디바운스 적용 실습
