@@ -1,26 +1,30 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Tabs } from 'antd';
+import { Tabs, TabsProps } from 'antd';
 
 import SearchPage from './pages/SearchPage';
 import FavoritePage from './pages/FavoritePage';
 import useCurrentSize from './hooks/useCurrentSize';
 
-const { TabPane } = Tabs;
-
 function App(): JSX.Element {
   const { width } = useCurrentSize();
 
+  const tabItems: TabsProps['items'] = [
+    {
+      label: 'SEARCH',
+      key: '1',
+      children: <SearchPage width={width} />,
+    },
+    {
+      label: 'FAVORITES',
+      key: '2',
+      children: <FavoritePage width={width} />,
+    },
+  ];
+
   return (
     <StyledWrapper>
-      <Tabs defaultActiveKey="1">
-        <TabPane tab="SEARCH" key="1">
-          <SearchPage width={width} />
-        </TabPane>
-        <TabPane tab="FAVORITES" key="2">
-          <FavoritePage width={width} />
-        </TabPane>
-      </Tabs>
+      <Tabs defaultActiveKey="1" items={tabItems} />
     </StyledWrapper>
   );
 }
