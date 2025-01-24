@@ -4,7 +4,7 @@
 
 > _입력한 키워드로 뉴욕타임즈 기사를 검색하는 미니 어플리케이션입니다_
 
-- Live Demo : [http://search-times.vercel.app](http://search-times.vercel.app/)
+- Live Demo: [http://search-times.vercel.app](http://search-times.vercel.app/)
 - 작업기간 3일
 
 # 사용 스택 / 라이브러리
