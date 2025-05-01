@@ -29,11 +29,9 @@ function SearchPage({ width }: { width: number }): JSX.Element {
   useEffect(() => {
     if (fetchedData !== null) {
       setNoResults(fetchedData.response.docs.length === 0);
-      const { offset } = fetchedData.response.meta;
-      setRenderData(prev =>
-        offset === 0
-          ? fetchedData.response.docs
-          : [...prev, ...fetchedData.response.docs],
+      const { offset } = fetchedData.response.metadata;
+      setRenderData((prev) =>
+        offset === 0 ? fetchedData.response.docs : [...prev, ...fetchedData.response.docs],
       );
     }
   }, [fetchedData]);
@@ -45,23 +43,17 @@ function SearchPage({ width }: { width: number }): JSX.Element {
     }
   }, [term]);
 
-  const isLastArticle = renderData.length === fetchedData?.response.meta.hits;
+  const isLastArticle = renderData.length === fetchedData?.response.metadata.hits;
   const isShowMoreBtn = isBottom && !isLastArticle && renderData.length > 0;
   const emptyMsg =
-    error !== null
-      ? `${error.statusText}, Please try later`
-      : `No Articles, Try other keywords`;
+    error !== null ? `${error.statusText}, Please try later` : `No Articles, Try other keywords`;
 
   return (
     <Container isCenter={term === ''} width={width}>
       <section>
         <h1>SEARCH TIMES</h1>
         <div>
-          <SearchBar
-            term={term}
-            setTerm={setTerm}
-            setCurrentPage={setCurrentPage}
-          />
+          <SearchBar term={term} setTerm={setTerm} setCurrentPage={setCurrentPage} />
         </div>
       </section>
       <section>

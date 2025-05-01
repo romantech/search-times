@@ -16,8 +16,8 @@ function ArticleList({ articles, term }: ArticleListProps): JSX.Element {
 
   return (
     <ArticleListContainer>
-      {articles?.map(article => {
-        const imageUrl = getImage(article.multimedia[0]?.url);
+      {articles?.map((article) => {
+        const imageUrl = getImage(article.multimedia.default.url);
         const isFavorite = favorites.some(({ _id }) => _id === article._id);
 
         return (

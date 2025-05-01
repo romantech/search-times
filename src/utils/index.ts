@@ -1,7 +1,4 @@
-export const sliceCharactersUntilNum = (
-  string: string,
-  num: number,
-): string => {
+export const sliceCharactersUntilNum = (string: string, num: number): string => {
   let count = 0;
   return string
     .split('')
@@ -15,23 +12,15 @@ export const sliceCharactersUntilNum = (
     .trim();
 };
 
-export const checkIsTermChanged = (
-  prevTerm: string,
-  curTerm: string,
-): boolean => {
+export const checkIsTermChanged = (prevTerm: string, curTerm: string): boolean => {
   const trimmedPrevTerm = prevTerm.trim();
   const trimmedCurTerm = curTerm.trim();
   return trimmedPrevTerm !== trimmedCurTerm;
 };
 
-export const getImage = (
-  imgUrl = 'fallback',
-  domain = 'https://nytimes.com/',
-): string => {
-  const hasImage = imgUrl !== undefined && imgUrl !== 'fallback';
-  return hasImage
-    ? `${domain}${imgUrl}`
-    : 'https://i.ibb.co/0yYnWSn/default-fallback-image.png';
+export const getImage = (imgUrl = 'fallback'): string => {
+  const hasImage = Boolean(imgUrl) && imgUrl !== 'fallback';
+  return hasImage ? imgUrl : 'https://i.ibb.co/0yYnWSn/default-fallback-image.png';
 };
 
 export const checkIsMobile = (): boolean => {

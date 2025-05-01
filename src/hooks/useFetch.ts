@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 interface ParamsType {
@@ -50,7 +50,7 @@ const useFetch = <T>({
           setFetchedData(data);
           setError(null);
         })
-        .catch(err => {
+        .catch((err) => {
           if (axios.isCancel(err)) return; // 취소 토큰 실행 후 요청이 취소되어 발생한 에러라면, 에러 메시지 미출력
           const statusText = err.response?.statusText || '404 Not Found';
           setError({
