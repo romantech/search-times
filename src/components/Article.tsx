@@ -5,11 +5,7 @@ import { useDispatch } from 'react-redux';
 import { StarFilled, StarOutlined } from '@ant-design/icons';
 import { addToFavorites, removeFromFavorites } from '../modules/favoriteList';
 import useImage from '../hooks/useImage';
-import {
-  FlexCenterColumn,
-  FlexCenterRow,
-  FlexStartRow,
-} from '../styles/commonStyles';
+import { FlexCenterColumn, FlexCenterRow, FlexStartRow } from '../styles/commonStyles';
 import useCurrentSize from '../hooks/useCurrentSize';
 
 interface ArticleListProps {
@@ -19,12 +15,7 @@ interface ArticleListProps {
   term: string;
 }
 
-function Article({
-  article,
-  isFavorite,
-  imageUrl,
-  term,
-}: ArticleListProps): JSX.Element {
+function Article({ article, isFavorite, imageUrl, term }: ArticleListProps): JSX.Element {
   const dispatch = useDispatch();
   const Image = useImage(imageUrl);
   const { width } = useCurrentSize();
@@ -54,7 +45,7 @@ function Article({
       return (
         <>
           {/* toString(36) -> 36진수로 변환 */}
-          {parts.map(part =>
+          {parts.map((part) =>
             part.toLowerCase() === query.toLowerCase() ? (
               <mark key={Math.random().toString(36).slice(2, 12)}>{part}</mark>
             ) : (
@@ -74,7 +65,7 @@ function Article({
         <TextWrapper>
           <h2>{getHighlightedText(article.headline.main, term)}</h2>
           <div>
-            <p>{article.lead_paragraph + '...'}</p>
+            <p>{article.snippet + '...'}</p>
             <a href={article.web_url} target="_blank" rel="noreferrer">
               more
             </a>
@@ -85,9 +76,7 @@ function Article({
         </ImageWrapper>
       </ArticleUpper>
       <ArticleLower>
-        <Tooltip
-          title={isFavorite ? 'Remove from favorite' : 'Add to favorite'}
-        >
+        <Tooltip title={isFavorite ? 'Remove from favorite' : 'Add to favorite'}>
           <Button
             shape="circle"
             icon={isFavorite ? <StarFilled /> : <StarOutlined />}
@@ -96,11 +85,7 @@ function Article({
         </Tooltip>
         <TagSpan>{article.pub_date.split('T')[0] || 'No Date'}</TagSpan>
         <TagSpan>{article.section_name || 'Various'}</TagSpan>
-        {width > 768 && (
-          <TagSpan>
-            {article.byline.original?.split(',')[0] || 'No Author'}
-          </TagSpan>
-        )}
+        {width > 768 && <TagSpan>{article.byline.original?.split(',')[0] || 'No Author'}</TagSpan>}
       </ArticleLower>
     </ArticleContainer>
   );
