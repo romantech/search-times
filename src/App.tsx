@@ -10,16 +10,8 @@ function App(): JSX.Element {
   const { width } = useCurrentSize();
 
   const tabItems: TabsProps['items'] = [
-    {
-      label: 'SEARCH',
-      key: '1',
-      children: <SearchPage width={width} />,
-    },
-    {
-      label: 'FAVORITES',
-      key: '2',
-      children: <FavoritePage width={width} />,
-    },
+    { label: 'SEARCH', key: '1', children: <SearchPage width={width} /> },
+    { label: 'FAVORITES', key: '2', children: <FavoritePage width={width} /> },
   ];
 
   return (

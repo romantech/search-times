@@ -28,6 +28,7 @@ export const removeFromFavorites = (
 });
 
 export default function reducer(
+  // eslint-disable-next-line @typescript-eslint/default-param-last
   state = initialState,
   action: FavoriteListAction,
 ): FavoriteListState {
@@ -40,7 +41,7 @@ export default function reducer(
     case REMOVE_FAVORITES:
       return {
         ...state,
-        favorites: state.favorites.filter(el => el._id !== action.payload),
+        favorites: state.favorites.filter((el) => el._id !== action.payload),
       };
     default:
       return state;
