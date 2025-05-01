@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // 리사이즈 참고 링크:
 // https://dev.to/vitaliemaldur/resize-event-listener-using-react-hooks-1k0c
@@ -11,14 +11,10 @@ import { useState, useEffect } from 'react';
 */
 
 const getWidth = () =>
-  document.documentElement.clientWidth ||
-  window.innerWidth ||
-  document.body.clientWidth;
+  document.documentElement.clientWidth || window.innerWidth || document.body.clientWidth;
 
 const getHeight = () =>
-  document.documentElement.clientHeight ||
-  window.innerHeight ||
-  document.body.clientHeight;
+  document.documentElement.clientHeight || window.innerHeight || document.body.clientHeight;
 
 // customHook의 이름은 무조건 use로 시작해야 한다
 export default function useCurrentSize(): { width: number; height: number } {
@@ -49,7 +45,7 @@ export default function useCurrentSize(): { width: number; height: number } {
     // set resize listener
     window.addEventListener('resize', resizeListener);
 
-    // clean up function
+    // cleanup function
     return () => {
       // remove resize listener
       window.removeEventListener('resize', resizeListener);
