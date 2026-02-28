@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { RootState } from '../modules';
 import { getImage } from '../utils';
 import Article from './Article';

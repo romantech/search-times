@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Spin } from 'antd';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { getImage } from '../utils';
 
 type SpinSize = 'default' | 'small' | 'large';
