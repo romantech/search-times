@@ -1,6 +1,6 @@
 import { resolve } from 'node:path';
 import { readFileSync } from 'node:fs';
-import { defineConfig, loadEnv, Plugin, PluginOption } from 'vite';
+import { defineConfig, loadEnv, Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
@@ -18,7 +18,29 @@ export default defineConfig(({ mode }) => {
       basePlugin(),
       importPrefixPlugin(),
       htmlPlugin(mode),
-    ] as PluginOption[],
+    ],
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (!id.includes('node_modules')) return;
+
+            // 경로 구분자 통일 (Windows 대응)
+            const p = id.replace(/\\/g, '/');
+
+            // pnpm 대응: .../.pnpm/pkg@ver/node_modules/pkg/...
+            // 핵심은 "/node_modules/<pkg>/" 형태를 잡는 것
+            const isPkg = (name: string) => p.includes(`/node_modules/${name}/`);
+
+            if (isPkg('react') || isPkg('react-dom') || isPkg('scheduler')) return 'react';
+            if (isPkg('react-router') || isPkg('react-router-dom')) return 'router';
+            if (isPkg('styled-components')) return 'styled';
+
+            // 나머지는 Rollup 기본 분리 전략에 맡김
+          },
+        },
+      },
+    },
   };
 });
 

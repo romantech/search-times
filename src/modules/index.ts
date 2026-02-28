@@ -4,13 +4,14 @@ import storage from 'redux-persist/lib/storage';
 import favoriteList from './favoriteList';
 
 const persistConfig = {
-  key: 'root',
+  key: 'search-times',
   storage,
   whitelist: ['favoriteList'],
 };
 
 const rootReducer = combineReducers({ favoriteList });
-
-export default persistReducer(persistConfig, rootReducer);
-
 export type RootState = ReturnType<typeof rootReducer>;
+
+export const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export default persistedReducer;

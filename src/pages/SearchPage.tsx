@@ -9,8 +9,8 @@ import useScroll from '../hooks/useScroll';
 import { FlexCenterColumn, HeadlineStyle } from '../styles/commonStyles';
 
 interface StyledProps {
-  isCenter: boolean;
-  width: number;
+  $isCenter: boolean;
+  $width: number;
 }
 
 function SearchPage({ width }: { width: number }) {
@@ -49,7 +49,7 @@ function SearchPage({ width }: { width: number }) {
     error !== null ? `${error.statusText}, Please try later` : `No Articles, Try other keywords`;
 
   return (
-    <Container isCenter={term === ''} width={width}>
+    <Container $isCenter={term === ''} $width={width}>
       <section>
         <h1>SEARCH TIMES</h1>
         <div>
@@ -94,11 +94,11 @@ const Container = styled.section<StyledProps>`
     transition: margin-top 0.3s ease-in-out;
   }
 
-  ${({ isCenter, width }) =>
-    isCenter &&
+  ${({ $isCenter, $width }) =>
+    $isCenter &&
     css`
       section:nth-child(1) {
-        margin-top: ${width > 768 ? '18vh' : '10vh'};
+        margin-top: ${$width > 768 ? '18vh' : '10vh'};
         transition: margin-top 0.3s ease-in-out;
       }
     `}

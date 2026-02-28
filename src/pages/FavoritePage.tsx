@@ -7,15 +7,15 @@ import ArticleList from '../components/ArticleList';
 import { FlexCenterColumn, HeadlineStyle } from '../styles/commonStyles';
 
 interface StyledProps {
-  isCenter: boolean;
-  width: number;
+  $isCenter: boolean;
+  $width: number;
 }
 
 function FavoritePage({ width }: { width: number }) {
   const { favorites } = useSelector((state: RootState) => state.favoriteList);
 
   return (
-    <FavoritePageContainer isCenter={favorites.length === 0} width={width}>
+    <FavoritePageContainer $isCenter={favorites.length === 0} $width={width}>
       <h1>FAVORITE ARTICLES</h1>
       <section>
         {favorites.length > 0 ? (
@@ -42,10 +42,10 @@ const FavoritePageContainer = styled.section<StyledProps>`
     margin-top: 3vh;
   }
 
-  ${({ isCenter, width }) =>
-    isCenter &&
+  ${({ $isCenter, $width }) =>
+    $isCenter &&
     css`
-      margin-top: ${width > 768 ? '18vh' : '10vh'};
+      margin-top: ${$width > 768 ? '18vh' : '10vh'};
       transition: margin-top 0.3s ease-in-out;
     `}
 `;
