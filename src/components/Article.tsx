@@ -15,7 +15,7 @@ interface ArticleListProps {
   term: string;
 }
 
-function Article({ article, isFavorite, imageUrl, term }: ArticleListProps): JSX.Element {
+function Article({ article, isFavorite, imageUrl, term }: ArticleListProps) {
   const dispatch = useDispatch();
   const Image = useImage(imageUrl);
   const { width } = useCurrentSize();

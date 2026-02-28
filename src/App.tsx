@@ -6,7 +6,7 @@ import SearchPage from './pages/SearchPage';
 import FavoritePage from './pages/FavoritePage';
 import useCurrentSize from './hooks/useCurrentSize';
 
-function App(): JSX.Element {
+function App() {
   const { width } = useCurrentSize();
 
   const tabItems: TabsProps['items'] = [

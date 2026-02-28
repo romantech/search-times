@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "type": "tsc -p tsconfig.json --noEmit",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "browserslist": {
     "production": [
@@ -34,12 +34,15 @@
     "styled-normalize": "^8.1.1"
   },
   "devDependencies": {
-    "@types/node": "^25.3.2",
+    "@redux-devtools/extension": "^3.3.0",
+    "@types/node": "^22.19.13",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/react-redux": "^7.1.34",
     "@types/styled-components": "^5.1.36",
-    "redux-devtools-extension": "^2.13.9",
-    "typescript": "^5.9.3"
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vite-tsconfig-paths": "^4.3.2"
   }
 }

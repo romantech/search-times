@@ -13,7 +13,7 @@ interface StyledProps {
   width: number;
 }
 
-function SearchPage({ width }: { width: number }): JSX.Element {
+function SearchPage({ width }: { width: number }) {
   const [term, setTerm] = useState('');
   const [noResults, setNoResults] = useState(false);
   const [currentPage, setCurrentPage] = useState<number>(0);

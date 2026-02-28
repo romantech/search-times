@@ -11,7 +11,7 @@ interface StyledProps {
   width: number;
 }
 
-function FavoritePage({ width }: { width: number }): JSX.Element {
+function FavoritePage({ width }: { width: number }) {
   const { favorites } = useSelector((state: RootState) => state.favoriteList);
 
   return (

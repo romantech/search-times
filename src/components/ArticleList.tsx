@@ -11,7 +11,7 @@ interface ArticleListProps {
   term: string;
 }
 
-function ArticleList({ articles, term }: ArticleListProps): JSX.Element {
+function ArticleList({ articles, term }: ArticleListProps) {
   const { favorites } = useSelector((state: RootState) => state.favoriteList);
 
   return (

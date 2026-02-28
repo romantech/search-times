@@ -5,7 +5,7 @@ import { getImage } from '../utils';
 
 type SpinSize = 'default' | 'small' | 'large';
 
-function useImage(src: string, spinSize: SpinSize = 'default'): () => JSX.Element {
+function useImage(src: string, spinSize: SpinSize = 'default') {
   const [isLoading, setIsLoading] = useState(true);
   return function Image() {
     return (
