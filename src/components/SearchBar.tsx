@@ -10,7 +10,7 @@ interface SearchBarProps {
 
 const { Search } = Input;
 
-function SearchBar({ term, setTerm, setCurrentPage }: SearchBarProps): JSX.Element {
+function SearchBar({ term, setTerm, setCurrentPage }: SearchBarProps) {
   const [debouncedTerm, setDebouncedTerm] = useState(term);
   const [typing, setTyping] = useState(false);
 

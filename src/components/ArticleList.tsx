@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { RootState } from '../modules';
 import { getImage } from '../utils';
 import Article from './Article';
@@ -11,7 +11,7 @@ interface ArticleListProps {
   term: string;
 }
 
-function ArticleList({ articles, term }: ArticleListProps): JSX.Element {
+function ArticleList({ articles, term }: ArticleListProps) {
   const { favorites } = useSelector((state: RootState) => state.favoriteList);
 
   return (

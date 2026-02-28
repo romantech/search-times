@@ -1,12 +1,12 @@
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Tabs, TabsProps } from 'antd';
 
 import SearchPage from './pages/SearchPage';
 import FavoritePage from './pages/FavoritePage';
 import useCurrentSize from './hooks/useCurrentSize';
 
-function App(): JSX.Element {
+function App() {
   const { width } = useCurrentSize();
 
   const tabItems: TabsProps['items'] = [

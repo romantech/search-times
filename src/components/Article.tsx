@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Button, message, Tooltip } from 'antd';
 import { useDispatch } from 'react-redux';
 import { StarFilled, StarOutlined } from '@ant-design/icons';
@@ -15,7 +15,7 @@ interface ArticleListProps {
   term: string;
 }
 
-function Article({ article, isFavorite, imageUrl, term }: ArticleListProps): JSX.Element {
+function Article({ article, isFavorite, imageUrl, term }: ArticleListProps) {
   const dispatch = useDispatch();
   const Image = useImage(imageUrl);
   const { width } = useCurrentSize();

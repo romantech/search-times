@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 import { Button, Empty, Spin } from 'antd';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import ArticleList from '../components/ArticleList';
@@ -9,11 +9,11 @@ import useScroll from '../hooks/useScroll';
 import { FlexCenterColumn, HeadlineStyle } from '../styles/commonStyles';
 
 interface StyledProps {
-  isCenter: boolean;
-  width: number;
+  $isCenter: boolean;
+  $width: number;
 }
 
-function SearchPage({ width }: { width: number }): JSX.Element {
+function SearchPage({ width }: { width: number }) {
   const [term, setTerm] = useState('');
   const [noResults, setNoResults] = useState(false);
   const [currentPage, setCurrentPage] = useState<number>(0);
@@ -49,7 +49,7 @@ function SearchPage({ width }: { width: number }): JSX.Element {
     error !== null ? `${error.statusText}, Please try later` : `No Articles, Try other keywords`;
 
   return (
-    <Container isCenter={term === ''} width={width}>
+    <Container $isCenter={term === ''} $width={width}>
       <section>
         <h1>SEARCH TIMES</h1>
         <div>
@@ -94,11 +94,11 @@ const Container = styled.section<StyledProps>`
     transition: margin-top 0.3s ease-in-out;
   }
 
-  ${({ isCenter, width }) =>
-    isCenter &&
+  ${({ $isCenter, $width }) =>
+    $isCenter &&
     css`
       section:nth-child(1) {
-        margin-top: ${width > 768 ? '18vh' : '10vh'};
+        margin-top: ${$width > 768 ? '18vh' : '10vh'};
         transition: margin-top 0.3s ease-in-out;
       }
     `}
