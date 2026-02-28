@@ -25,18 +25,26 @@ export default defineConfig(({ mode }) => {
           manualChunks(id) {
             if (!id.includes('node_modules')) return;
 
-            // 경로 구분자 통일 (Windows 대응)
             const p = id.replace(/\\/g, '/');
-
-            // pnpm 대응: .../.pnpm/pkg@ver/node_modules/pkg/...
-            // 핵심은 "/node_modules/<pkg>/" 형태를 잡는 것
             const isPkg = (name: string) => p.includes(`/node_modules/${name}/`);
 
             if (isPkg('react') || isPkg('react-dom') || isPkg('scheduler')) return 'react';
             if (isPkg('react-router') || isPkg('react-router-dom')) return 'router';
             if (isPkg('styled-components')) return 'styled';
 
-            // 나머지는 Rollup 기본 분리 전략에 맡김
+            // ✅ antd 계열 분리
+            if (
+              isPkg('antd') ||
+              isPkg('@ant-design') ||
+              isPkg('rc-notification') ||
+              isPkg('rc-motion') ||
+              isPkg('rc-trigger') ||
+              isPkg('rc-tooltip') ||
+              isPkg('rc-dropdown') ||
+              isPkg('rc-select')
+            ) {
+              return 'antd';
+            }
           },
         },
       },
