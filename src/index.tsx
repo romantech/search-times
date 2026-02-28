@@ -9,7 +9,6 @@ import { FLUSH, PAUSE, PERSIST, persistStore, PURGE, REGISTER, REHYDRATE } from 
 import rootReducer from './modules';
 import App from './App';
 import GlobalStyle from './styles/globalStyle';
-import 'antd/dist/antd.min.css';
 
 const store = configureStore({
   reducer: rootReducer,
