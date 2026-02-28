@@ -110,9 +110,9 @@ const ArticleUpper = styled.section`
 const TextWrapper = styled.section`
   width: 73%;
 
-  // mark는 하이라이트된 택스트를 정의할 때 사용하는 태그
+  // mark는 하이라이트된 텍스트를 정의할 때 사용하는 태그
   mark {
-    background-color: #ffff005a;
+    background-color: #ffff00;
   }
 
   h2 {
