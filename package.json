@@ -2,6 +2,7 @@
   "name": "search-times",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@11.9.0",
   "scripts": {
     "dev": "vite",
     "type": "tsc -p tsconfig.json --noEmit",
