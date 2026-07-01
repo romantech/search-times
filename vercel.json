@@ -1,7 +1,6 @@
 {
   "build": {
     "env": {
-      "CI": "true",
       "ENABLE_EXPERIMENTAL_COREPACK": "1"
     }
   }
