@@ -3,9 +3,9 @@ import { Spin } from 'antd';
 import styled from 'styled-components';
 import { getImage } from '../utils';
 
-type SpinSize = 'default' | 'small' | 'large';
+type SpinSize = 'small' | 'medium' | 'large';
 
-function useImage(src: string, spinSize: SpinSize = 'default') {
+function useImage(src: string, spinSize: SpinSize = 'medium') {
   const [isLoading, setIsLoading] = useState(true);
   return function Image() {
     return (
