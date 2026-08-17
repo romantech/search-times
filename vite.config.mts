@@ -2,7 +2,6 @@ import { resolve } from 'node:path';
 import { readFileSync } from 'node:fs';
 import { defineConfig, loadEnv, Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -10,7 +9,6 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       react(),
-      tsconfigPaths(),
       envPlugin(),
       devServerPlugin(),
       sourcemapPlugin(),
@@ -20,31 +18,14 @@ export default defineConfig(({ mode }) => {
       htmlPlugin(mode),
     ],
     build: {
-      rollupOptions: {
+      rolldownOptions: {
         output: {
-          manualChunks(id) {
-            if (!id.includes('node_modules')) return;
-
-            const p = id.replace(/\\/g, '/');
-            const isPkg = (name: string) => p.includes(`/node_modules/${name}/`);
-
-            if (isPkg('react') || isPkg('react-dom') || isPkg('scheduler')) return 'react';
-            if (isPkg('react-router') || isPkg('react-router-dom')) return 'router';
-            if (isPkg('styled-components')) return 'styled';
-
-            // ✅ antd 계열 분리
-            if (
-              isPkg('antd') ||
-              isPkg('@ant-design') ||
-              isPkg('rc-notification') ||
-              isPkg('rc-motion') ||
-              isPkg('rc-trigger') ||
-              isPkg('rc-tooltip') ||
-              isPkg('rc-dropdown') ||
-              isPkg('rc-select')
-            ) {
-              return 'antd';
-            }
+          codeSplitting: {
+            groups: [
+              { name: 'react', test: /node_modules\/(?:react|react-dom|scheduler)\// },
+              { name: 'styled', test: /node_modules\/styled-components\// },
+              { name: 'antd', test: /node_modules\/(?:antd|@ant-design)\// },
+            ],
           },
         },
       },

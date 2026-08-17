@@ -28,7 +28,7 @@ export default function useCurrentSize(): { width: number; height: number } {
   // it does not have any dependencies.
   useEffect(() => {
     // timeoutId for debounce mechanism
-    let timeoutId: NodeJS.Timeout;
+    let timeoutId: ReturnType<typeof setTimeout>;
     const resizeListener = () => {
       // prevent execution of previous setTimeout
       clearTimeout(timeoutId);
