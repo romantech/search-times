@@ -15,7 +15,7 @@ function SearchBar({ term, setTerm, setCurrentPage }: SearchBarProps) {
   const [typing, setTyping] = useState(false);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
+    let timer: ReturnType<typeof setTimeout>;
     const isChanged = checkIsTermChanged(term, debouncedTerm);
     if (isChanged) {
       timer = setTimeout(() => {

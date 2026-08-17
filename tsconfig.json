@@ -3,7 +3,7 @@
     "allowJs": true,
     "target": "esnext",
     "moduleResolution": "bundler",
-    "lib": ["ES2015", "DOM", "DOM.Iterable"],
+    "lib": ["ES2018", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -15,7 +15,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "downlevelIteration": true,
     "typeRoots": ["./node_modules/@types", "./src/types"]
   },
   "references": [{ "path": "./tsconfig.node.json" }],
