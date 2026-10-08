@@ -26,7 +26,7 @@
     "@reduxjs/toolkit": "^2.12.0",
     "@vercel/analytics": "^2.0.1",
     "antd": "^6.6.0",
-    "axios": "^1.19.0",
+    "axios": "^1.20.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-redux": "^9.3.0",
