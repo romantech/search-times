@@ -2,7 +2,7 @@
   "name": "search-times",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@11.22.0",
+  "packageManager": "pnpm@12.11.2",
   "scripts": {
     "dev": "vite",
     "type": "tsc -p tsconfig.json --noEmit",
@@ -18,17 +18,17 @@
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version, not dead"
     ]
   },
   "dependencies": {
-    "@ant-design/icons": "^6.3.2",
-    "@reduxjs/toolkit": "^2.12.0",
+    "@ant-design/icons": "^6.3.4",
+    "@reduxjs/toolkit": "^2.13.0",
     "@vercel/analytics": "^2.0.1",
-    "antd": "^6.6.0",
+    "antd": "^6.6.5",
     "axios": "^1.20.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "react-redux": "^9.3.0",
     "redux": "^5.0.1",
     "redux-persist": "^6.0.0",
@@ -36,11 +36,11 @@
     "styled-normalize": "^8.1.1"
   },
   "devDependencies": {
-    "@types/node": "^26.2.0",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.4",
-    "@vitejs/plugin-react": "^6.0.5",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
     "typescript": "^7.0.2",
-    "vite": "^8.2.1"
+    "vite": "^8.3.4"
   }
 }
