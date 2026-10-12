@@ -1,9 +1,8 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
 import { Empty } from 'antd';
 import { useSelector } from 'react-redux';
-import { RootState } from '../modules';
+import styled, { css } from 'styled-components';
 import ArticleList from '../components/ArticleList';
+import type { RootState } from '../modules';
 import { FlexCenterColumn, HeadlineStyle } from '../styles/commonStyles';
 
 interface StyledProps {

@@ -1,4 +1,7 @@
-export const sliceCharactersUntilNum = (string: string, num: number): string => {
+export const sliceCharactersUntilNum = (
+  string: string,
+  num: number,
+): string => {
   let count = 0;
   return string
     .split('')
@@ -12,7 +15,10 @@ export const sliceCharactersUntilNum = (string: string, num: number): string => 
     .trim();
 };
 
-export const checkIsTermChanged = (prevTerm: string, curTerm: string): boolean => {
+export const checkIsTermChanged = (
+  prevTerm: string,
+  curTerm: string,
+): boolean => {
   const trimmedPrevTerm = prevTerm.trim();
   const trimmedCurTerm = curTerm.trim();
   return trimmedPrevTerm !== trimmedCurTerm;
@@ -20,14 +26,16 @@ export const checkIsTermChanged = (prevTerm: string, curTerm: string): boolean =
 
 export const getImage = (imgUrl = 'fallback'): string => {
   const hasImage = Boolean(imgUrl) && imgUrl !== 'fallback';
-  return hasImage ? imgUrl : 'https://i.ibb.co/0yYnWSn/default-fallback-image.png';
+  return hasImage
+    ? imgUrl
+    : 'https://i.ibb.co/0yYnWSn/default-fallback-image.png';
 };
 
 export const checkIsMobile = (): boolean => {
   try {
     document.createEvent('TouchEvent');
     return true;
-  } catch (e) {
+  } catch {
     return false;
   }
 };

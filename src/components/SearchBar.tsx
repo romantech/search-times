@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
 import { Input } from 'antd';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import { checkIsTermChanged } from '../utils';
 
 interface SearchBarProps {

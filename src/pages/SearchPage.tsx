@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
-import { Button, Empty, Spin } from 'antd';
 import { PlusCircleOutlined } from '@ant-design/icons';
+import { Button, Empty, Spin } from 'antd';
+import { useEffect, useState } from 'react';
+import styled, { css } from 'styled-components';
 import ArticleList from '../components/ArticleList';
 import SearchBar from '../components/SearchBar';
 import useFetch from '../hooks/useFetch';
@@ -31,7 +31,9 @@ function SearchPage({ width }: { width: number }) {
       setNoResults(fetchedData.response.docs.length === 0);
       const { offset } = fetchedData.response.metadata;
       setRenderData((prev) =>
-        offset === 0 ? fetchedData.response.docs : [...prev, ...fetchedData.response.docs],
+        offset === 0
+          ? fetchedData.response.docs
+          : [...prev, ...fetchedData.response.docs],
       );
     }
   }, [fetchedData]);
@@ -43,17 +45,24 @@ function SearchPage({ width }: { width: number }) {
     }
   }, [term]);
 
-  const isLastArticle = renderData.length === fetchedData?.response.metadata.hits;
+  const isLastArticle =
+    renderData.length === fetchedData?.response.metadata.hits;
   const isShowMoreBtn = isBottom && !isLastArticle && renderData.length > 0;
   const emptyMsg =
-    error !== null ? `${error.statusText}, Please try later` : `No Articles, Try other keywords`;
+    error !== null
+      ? `${error.statusText}, Please try later`
+      : `No Articles, Try other keywords`;
 
   return (
     <Container $isCenter={term === ''} $width={width}>
       <section>
         <h1>SEARCH TIMES</h1>
         <div>
-          <SearchBar term={term} setTerm={setTerm} setCurrentPage={setCurrentPage} />
+          <SearchBar
+            term={term}
+            setTerm={setTerm}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
       </section>
       <section>

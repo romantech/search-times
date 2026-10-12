@@ -1,12 +1,15 @@
-import React from 'react';
-import styled from 'styled-components';
+import { StarFilled, StarOutlined } from '@ant-design/icons';
 import { Button, message, Tooltip } from 'antd';
 import { useDispatch } from 'react-redux';
-import { StarFilled, StarOutlined } from '@ant-design/icons';
-import { addToFavorites, removeFromFavorites } from '../modules/favoriteList';
-import useImage from '../hooks/useImage';
-import { FlexCenterColumn, FlexCenterRow, FlexStartRow } from '../styles/commonStyles';
+import styled from 'styled-components';
 import useCurrentSize from '../hooks/useCurrentSize';
+import useImage from '../hooks/useImage';
+import { addToFavorites, removeFromFavorites } from '../modules/favoriteList';
+import {
+  FlexCenterColumn,
+  FlexCenterRow,
+  FlexStartRow,
+} from '../styles/commonStyles';
 
 interface ArticleListProps {
   article: Article;
@@ -21,7 +24,7 @@ function Article({ article, isFavorite, imageUrl, term }: ArticleListProps) {
   const { width } = useCurrentSize();
 
   const favoriteHandler = async () => {
-    let msg;
+    let msg: string;
     if (isFavorite) {
       dispatch(removeFromFavorites(article._id));
       msg = '즐겨찾기에서 삭제되었습니다';
@@ -65,7 +68,7 @@ function Article({ article, isFavorite, imageUrl, term }: ArticleListProps) {
         <TextWrapper>
           <h2>{getHighlightedText(article.headline.main, term)}</h2>
           <div>
-            <p>{article.snippet + '...'}</p>
+            <p>{`${article.snippet}...`}</p>
             <a href={article.web_url} target="_blank" rel="noreferrer">
               more
             </a>
@@ -76,7 +79,9 @@ function Article({ article, isFavorite, imageUrl, term }: ArticleListProps) {
         </ImageWrapper>
       </ArticleUpper>
       <ArticleLower>
-        <Tooltip title={isFavorite ? 'Remove from favorite' : 'Add to favorite'}>
+        <Tooltip
+          title={isFavorite ? 'Remove from favorite' : 'Add to favorite'}
+        >
           <Button
             shape="circle"
             icon={isFavorite ? <StarFilled /> : <StarOutlined />}
@@ -85,7 +90,11 @@ function Article({ article, isFavorite, imageUrl, term }: ArticleListProps) {
         </Tooltip>
         <TagSpan>{article.pub_date.split('T')[0] || 'No Date'}</TagSpan>
         <TagSpan>{article.section_name || 'Various'}</TagSpan>
-        {width > 768 && <TagSpan>{article.byline.original?.split(',')[0] || 'No Author'}</TagSpan>}
+        {width > 768 && (
+          <TagSpan>
+            {article.byline.original?.split(',')[0] || 'No Author'}
+          </TagSpan>
+        )}
       </ArticleLower>
     </ArticleContainer>
   );

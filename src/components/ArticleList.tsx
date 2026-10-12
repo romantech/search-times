@@ -1,10 +1,9 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { RootState } from '../modules';
+import type { RootState } from '../modules';
+import { FlexCenterColumn } from '../styles/commonStyles';
 import { getImage } from '../utils';
 import Article from './Article';
-import { FlexCenterColumn } from '../styles/commonStyles';
 
 interface ArticleListProps {
   articles: Article[];
