@@ -1,7 +1,4 @@
 {
-  "build": {
-    "env": {
-      "ENABLE_EXPERIMENTAL_COREPACK": "1"
-    }
-  }
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "npx --yes \"$(node -p 'require(\"./package.json\").packageManager')\" install --frozen-lockfile"
 }

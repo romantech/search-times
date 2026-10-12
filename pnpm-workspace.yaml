@@ -3,5 +3,3 @@ packages:
 
 allowBuilds:
   esbuild: true
-
-confirmModulesPurge: false
