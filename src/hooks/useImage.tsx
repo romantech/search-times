@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { Spin } from 'antd';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { getImage } from '../utils';
 

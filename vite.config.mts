@@ -1,7 +1,7 @@
-import { resolve } from 'node:path';
 import { readFileSync } from 'node:fs';
-import { defineConfig, loadEnv, Plugin } from 'vite';
+import { resolve } from 'node:path';
 import react from '@vitejs/plugin-react';
+import { defineConfig, loadEnv, type Plugin } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -22,7 +22,10 @@ export default defineConfig(({ mode }) => {
         output: {
           codeSplitting: {
             groups: [
-              { name: 'react', test: /node_modules\/(?:react|react-dom|scheduler)\// },
+              {
+                name: 'react',
+                test: /node_modules\/(?:react|react-dom|scheduler)\//,
+              },
               { name: 'styled', test: /node_modules\/styled-components\// },
               { name: 'antd', test: /node_modules\/(?:antd|@ant-design)\// },
             ],
@@ -34,7 +37,10 @@ export default defineConfig(({ mode }) => {
 });
 
 function setEnv(mode: string) {
-  Object.assign(process.env, loadEnv(mode, '.', ['REACT_APP_', 'NODE_ENV', 'PUBLIC_URL']));
+  Object.assign(
+    process.env,
+    loadEnv(mode, '.', ['REACT_APP_', 'NODE_ENV', 'PUBLIC_URL']),
+  );
 
   const { homepage } = JSON.parse(readFileSync('package.json', 'utf8'));
 
@@ -45,7 +51,9 @@ function setEnv(mode: string) {
       process.env.PUBLIC_URL ||
       (homepage
         ? `${
-            homepage.startsWith('http') || homepage.startsWith('/') ? homepage : `/${homepage}`
+            homepage.startsWith('http') || homepage.startsWith('/')
+              ? homepage
+              : `/${homepage}`
           }`.replace(/\/$/, '')
         : ''),
   });
@@ -61,7 +69,10 @@ function envPlugin(): Plugin {
       const env = loadEnv(mode, '.', ['REACT_APP_', 'NODE_ENV', 'PUBLIC_URL']);
       return {
         define: Object.fromEntries(
-          Object.entries(env).map(([key, value]) => [`process.env.${key}`, JSON.stringify(value)]),
+          Object.entries(env).map(([key, value]) => [
+            `process.env.${key}`,
+            JSON.stringify(value),
+          ]),
         ),
       };
     },
@@ -77,13 +88,11 @@ function devServerPlugin(): Plugin {
   return {
     name: 'dev-server-plugin',
     config(_, { mode }) {
-      const { HOST, PORT, HTTPS, SSL_CRT_FILE, SSL_KEY_FILE } = loadEnv(mode, '.', [
-        'HOST',
-        'PORT',
-        'HTTPS',
-        'SSL_CRT_FILE',
-        'SSL_KEY_FILE',
-      ]);
+      const { HOST, PORT, HTTPS, SSL_CRT_FILE, SSL_KEY_FILE } = loadEnv(
+        mode,
+        '.',
+        ['HOST', 'PORT', 'HTTPS', 'SSL_CRT_FILE', 'SSL_KEY_FILE'],
+      );
       const https = HTTPS === 'true';
       return {
         server: {

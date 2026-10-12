@@ -1,10 +1,8 @@
-import React from 'react';
+import { Tabs, type TabsProps } from 'antd';
 import styled from 'styled-components';
-import { Tabs, TabsProps } from 'antd';
-
-import SearchPage from './pages/SearchPage';
-import FavoritePage from './pages/FavoritePage';
 import useCurrentSize from './hooks/useCurrentSize';
+import FavoritePage from './pages/FavoritePage';
+import SearchPage from './pages/SearchPage';
 
 function App() {
   const { width } = useCurrentSize();

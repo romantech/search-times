@@ -11,10 +11,14 @@ import { useEffect, useState } from 'react';
 */
 
 const getWidth = () =>
-  document.documentElement.clientWidth || window.innerWidth || document.body.clientWidth;
+  document.documentElement.clientWidth ||
+  window.innerWidth ||
+  document.body.clientWidth;
 
 const getHeight = () =>
-  document.documentElement.clientHeight || window.innerHeight || document.body.clientHeight;
+  document.documentElement.clientHeight ||
+  window.innerHeight ||
+  document.body.clientHeight;
 
 // customHook의 이름은 무조건 use로 시작해야 한다
 export default function useCurrentSize(): { width: number; height: number } {

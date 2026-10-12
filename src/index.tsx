@@ -1,13 +1,20 @@
-import React from 'react';
-import { PersistGate } from 'redux-persist/integration/react';
-import { Provider } from 'react-redux';
-import { createRoot } from 'react-dom/client';
-import { Analytics } from '@vercel/analytics/react';
 import { configureStore } from '@reduxjs/toolkit';
-import { FLUSH, PAUSE, PERSIST, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
-
-import rootReducer from './modules';
+import { Analytics } from '@vercel/analytics/react';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  persistStore,
+  REGISTER,
+  REHYDRATE,
+} from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 import App from './App';
+import rootReducer from './modules';
 import GlobalStyle from './styles/globalStyle';
 
 const store = configureStore({

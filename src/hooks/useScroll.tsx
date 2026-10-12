@@ -26,7 +26,8 @@ const useInfiniteScroll = (): boolean => {
 
       // 모바일이 아닐경우
     } else if (
-      document.body.scrollHeight - (window.innerHeight + document.documentElement.scrollTop) >
+      document.body.scrollHeight -
+        (window.innerHeight + document.documentElement.scrollTop) >
       200
     ) {
       return setIsBottom(false);

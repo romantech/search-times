@@ -1,4 +1,4 @@
-import axios, { AxiosPromise, CancelTokenSource } from 'axios';
+import axios, { type AxiosPromise, type CancelTokenSource } from 'axios';
 
 axios.defaults.baseURL = 'https://api.nytimes.com/svc/search/v2';
 axios.defaults.params = {
